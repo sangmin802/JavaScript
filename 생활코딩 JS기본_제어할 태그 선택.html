@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- document.querySelector = document.getElementById('') -->
+    <ul>
+        <li class="li list">menu</li>
+        <li class="list">menu</li>
+        <li class="list">menu</li>
+        <li class="list">menu</li>
+    </ul>
+    <script>
+        var li = document.querySelector('.li');
+        var list = document.querySelectorAll('.list');
+        console.log(list.length)
+        li.style.backgroundColor='red';
+        // 저거 querySelectorAll의 제한적인 부분은 Boolean과 조건문.html에서 확인
+    </script>
+</body>
+</html>

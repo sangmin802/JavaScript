@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {text-decoration : none; list-style : none;}
+    </style>
+</head>
+<body>
+    <input type="button" value="night" class="btn">
+    <ul>
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+     <script>
+        // Number
+        // String
+        // Boolean : true? false?
+        //  document.write('1<br>');
+        //  if(true){ //(true인지 false인지 확인)
+        //     document.write('2<br>'); // 얘가 조건에 충족
+        //  }else{
+        //     document.write('3<br>'); // 얘는 조건에 불충족(false)로 화면에서 안보임
+        //  }
+        //  document.write('4<br>');
+         
+        //  document.write('1<br>');
+        //  if(false){
+        //     document.write('2<br>');  // 얘는 조건에 불충족(false)로 화면에서 안보임
+        //  }else{
+        //     document.write('3<br>'); // 얘가 조건에 충족
+        //  }
+        //  document.write('4<br>');
+
+        //document.querySelector('a') = 첫번째거 한개만 갖고온다
+        //document.querySelectorAll('a') = 모든 a 태그를 가지고 와서 배열에 넣는다
+        // *** 그렇기 때문에 querySelectorAll로 한가지 이벤트를 모두에게 적용시키는 것을 단순하게는 못하고, 배열의[n] n번째를 반복문을 통해 모두 적용시켜줘야한다!
+
+        // 리펙토링 과정을 통해 중복되는것을 제거
+        document.querySelector('.btn').onclick=function(){
+            var target = document.querySelector('body');
+            var alist = document.querySelectorAll('li'); // 배열의 형태 ['a','a','a','a'];
+            var i = 0;
+            if(this.value==='night'){
+                target.style.backgroundColor ="black";
+                target.style.color="white";
+                this.value="day";
+
+                // 미작동
+                // document.querySelectorAll('a').style.color ='powderblue';
+
+                // 정상작동            
+                while(i<alist.length){
+                    console.log(i) // 0,1,2,3
+                    alist[i].style.color ='powderblue';
+                    i++;
+                    console.log(i) // 1,2,3,4
+                }                
+            }else{
+                target.style.backgroundColor ="white";
+                target.style.color="black";
+                this.value="night";
+
+                // 미작동
+                // document.querySelectorAll('a').style.color ='powderblue';
+
+                // 정상작동  
+                while(i<alist.length){
+                    alist[i].style.color ='black';
+                    i=i+1;
+                }                
+            }
+        }
+        
+        // 아래의 예시도 배열을 누른다는 뜻이기 때문에 작동되지 않는다
+        document.querySelectorAll('li').onclick=function(){
+        }
+
+        var all_li = document.querySelectorAll('li');
+        var li = document.querySelector('li');
+
+        // 위의 이유 때문에 index 찾는 방법을 통해 그것에 효과 적용
+        // for(var i = 0; i < all_li.length; i++){
+        //     find_index(i);
+        // }
+        // function find_index(_i){
+        //     all_li[_i].onclick=function(){
+        //         console.log('인덱스 : '+_i);
+        //     }
+        // }
+
+
+        // 해당 리스트들에게 배열의 n번째의 값을 매칭시켜주는(?) 느낌
+        // + 응용조금해봄
+        for(var i = 0; i < all_li.length; i++){
+            find_index(i);
+        }
+
+        function find_index(_i){
+            all_li[_i].onclick=function(){
+                for(var i = 0; i<all_li.length; i++){
+                    if(document.querySelector('.btn').value==='night'){
+                        all_li[i].style.color="black";
+                    }else{
+                        all_li[i].style.color="powderblue";
+                    }
+                }
+                this.style.color="tomato";
+            }
+        }
+
+     </script>
+</body>
+</html>
