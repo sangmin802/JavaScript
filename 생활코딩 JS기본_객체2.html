@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {text-decoration : none; list-style : none;}
+    </style>    
+</head>
+<body>
+    <input type="button" value="night" class="btn">
+    <ul>
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+    <script>
+        // 배운 객체를 활용하여 좀 더 정리정돈을 해보기
+        // 함수는 ''사용안함. 왜? ''는 문자열로 바꾸니깐 함수가 작동안됨
+        var target = document.querySelector('body');
+        var alist = document.querySelectorAll('li');
+
+        var body = {
+            setColor : function(color){
+                document.querySelector('body').style.color=color;
+            },
+            setBackgroundColor : function(color){
+                document.querySelector('body').style.backgroundColor=color;
+            }
+        }
+        var list = {
+            setColor : function(color){
+                var i = 0;
+                while(i<alist.length){
+                    alist[i].style.color=color;
+                    i++;
+                }   
+            }
+        }
+
+        // 대부분 비슷한 이름의 함수들, 위처럼 setColor 이런것들은 앞에 body나 lsit처럼 해당 함수가 적용되는 태그 들의 이름을 붙여주지만, 이러다보면 함수 이름의 길이가 어마어마하게 길어진다. 그렇기 때문에, 비슷한 이름의 함수더라도 사용되는 태그가 다르면 해당 태그등의 이름으로 객체를 만든 다음 그 안에 함수를 보관하여 구분해 사용하는것이 보다 깔끔하고 좋다.
+        
+        document.querySelector('.btn').onclick=function(){     
+            if(this.value==='night'){
+                body.setBackgroundColor('black'); // 함수를 객체안에 넣음
+                body.setColor('white'); // 함수를 객체안에 넣음
+                this.value="day";
+        
+                list.setColor('powderblue');
+            }else{
+                body.setBackgroundColor('white'); // 함수를 객체안에 넣음
+                body.setColor('black'); // 함수를 객체안에 넣음
+                this.value="night";
+
+                list.setColor('black');              
+            }
+        }
+
+        // function bodysSetBackgroundColor(color){
+        //     document.querySelector('body').style.backgroundColor=color;
+        // }
+
+        // function bodysSetColor(color){
+        //     document.querySelector('body').style.color=color;
+        // }
+
+        // function listSetColor(color){
+        //     var i = 0;
+        //     while(i<alist.length){
+        //         alist[i].style.color=color;
+        //         i++;
+        //     }   
+        // }    
+    </script>
+</body>
+</html>

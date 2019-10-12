@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 함수는 음료수 자판기이다 (입력과 출력의 존재)
+        // 입력값 (Parameter, Argument)
+        function sum(left, right){ // 매개변수(Parameter) : 함수받아오는 변하는 값 left, right
+            document.write(left+right+'<br');
+        }
+        sum(2,3); // 인자(Argument) : 상황에 따라 함수에 다르게 보내지는 값
+        sum(3,4); // 인자(Argument) : 상황에 따라 함수에 다르게 보내지는 값
+
+
+
+        // 출력값 (Return)
+        function sum2(left, right){
+            return left+right; // 해당 함수로 실행된 값을 여러용도로 활용하기 위해서 값만 출력해옴
+        }
+        sum2(2,3) // 5에대한 표현식
+        document.write(sum2(2,3)+'<br>'); 
+        document.write('<div style="color : red">sum2(2,3)+</div>'); 
+    </script>
+</body>
+</html>
