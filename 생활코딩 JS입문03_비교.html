@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 연산자
+        // = : 대입
+        // == : 같은지 (결과값은 boolean(true or false)로 나온다)
+        // === : 정확하게 같은지 (비교대상들이 같은 datetype인지(string인지 number인지)조차 검사)
+
+        console.log(1=='1'); // true
+        console.log(1==='1'); // false
+        console.log(1===1); // true
+
+        // 되도록 === 연산자를 사용하는것을 권한다
+
+        // undefined 와 null
+        var a;
+        console.log(a); // undefined;
+
+        var b = null;
+        console.log(b); // null;
+        // 둘 다 동일하게 값이 없는 상태이지만, undefined는 프로그래머가 의도하지않은 결과이며, null은 프로그래머의 의도된(지정한) 결과이다.
+        console.log(undefined==null); // true; 둘다 값이 없는 상태이기에 
+        console.log(undefined===null); // false; 하지만 datatype은 다름
+        // undefined는 undefined의 datatype
+        // null은 null의 datatype
+
+        // == 동등연산자
+        console.log(true == 1); // true;
+        console.log(true == 2); // false;
+        console.log(true == 3); // false;
+        // 동등연산자에서 true 는 1이다. 그외는 false 이다
+
+        // === 일치연산자
+        console.log(true === 1); // false;
+        console.log(true === '1'); // false;
+        console.log(true === 2); // false;
+        // 일치연산자에서  true는 boolean datatype이며 1, '1'은 Number, String datatype이므로 모두 false 이다
+        console.log(0 === -0); // true 둘 다 정 가운데의 숫자이므로 true
+
+        // 이 외의 결과
+        console.log(NAN === NAN) // false; 계산할수 없음의 뜻
+
+        // != : ==결과의 반대로 보여줌 (다르냐)
+        // !== : ===결과의 반대로 보여줌 (다르냐)
+    </script>
+</body>
+</html>

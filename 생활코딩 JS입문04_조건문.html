@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // if(true)인 경우만 실행
+        // if(false)인 경우 미실행
+        // 좀 더 복잡한 상황을 처리하기 위해 else가 있다.
+        // 이전의 조건이 실행되지 않았다면 else 실행
+
+        // 더더더더더 복잡한 상황을 처리하기 위한 else if
+        if(false){
+            console.log(1);
+        }else if(true){
+            console.log(2); // 얘만 실행된다.
+        }else if(true){
+            console.log(3);
+        }else{
+            console.log(4);
+        }
+        // console.log(1) : 조건에서 false이기 때문에 미실행
+        // console.log(2) : 이전 조건에서 미실행이기 때문에 실행
+        // console.log(3) : 이전 조건에서 실행이기 때문에 미실행
+        // console.log(4) : 이전 조건에서 실행이기 때문에 미실행
+
+        // 즉, else if는 else와 다르게 여러번 사용되어 조건을 좀 더 세부적으로 나눌 수 있으며, 한번 조건이 true가 되어 실행이 된다면, 다음단계로 넘어가지 않는다.
+
+        // 또 다른 Boolean;
+        // if('') : false; if(!'') : true;
+        // if(undefined) : false; if(!undefined) : true;
+        // if(null) : false; if(!null) : true;
+    </script>
+</body>
+</html>
