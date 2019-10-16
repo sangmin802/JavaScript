@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 반복문 for 제어
+        for(var i = 0; i < 10; i++){
+            if(i === 5){
+                break; // i가 5가 되었을 때에, 반복문 중단
+            }
+            document.write('coding everybody'+i+'<br>');
+        }
+
+        for(var i = 0; i < 10; i++){
+            if(i === 5){
+                continue; // i가 5가 되었을 때에, 반복문 중단되고, 5에서 반복문 다시시작. 즉, 5는 write가 안된다.
+            }
+            document.write('coding everybody'+i+'<br>');
+        }
+
+        // 반복문 중첩
+        for (var i = 0; i < 10; i++){
+            for(var j = 0; j < 10; j++){
+                document.write('coding everybody'+i+j+'<br>');
+            }
+        }
+        // 부모 반복문에서 i 한개를 자식 반복문이 받아온 뒤, 그것을 조건만큼 돌리고, 부모 반복문에서 다음 i를 받아오는 순서
+        // 진행순서를 보고싶은 반복문을 클릭한 뒤, 개발자도구의 Watch Expressions에서 화살표 아래방향을 누르면 하나씩 천천히 살펴볼 수 있다.
+        // 해제하고 싶으면, 클릭한 반복문 좌측의 코드입력된 번호를 누르고, 오른쪽화살표모양의 진행을 누르면 풀린다.
+    </script>
+</body>
+</html>

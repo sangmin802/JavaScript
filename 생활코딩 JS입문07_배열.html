@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 배열 : 관련있는 변수등의 값을 하나의 캐비넷에 보관
+        // 기존 return은 특성상 한개만 갖고 출력할 수 있는데,
+        function get_members(){
+            return ['상민', '준성', '태균'];
+        }
+        console.log(get_members());
+        // 배열을 활용하면 여러개를 출력할 수 있다.
+
+        // 배열에 추가
+        // push : 배열의 마지막에 한개 추가
+        // concat : 배열에 여러개 추가
+        var arr = ['상민', '준성', '태균'];
+        arr = arr.concat(['상혁', '원빈']); // 얘는 return을 해줘야 한다.
+
+        // unshift : 배열의 첫부분에 추가
+        arr.unshift('우찬', '지찬'); // 이래도 되는거보니 concat그냥 안쓰는게나을듯
+        console.log(arr);
+        
+        // splice 삭제 및 교체
+        arr.splice(1, 1, '해조') // index가 1번째인 애('지찬')을 포함해서 1개를 지우고 '해조'를 넣어라
+        // 즉 지찬 -> 해조 교체
+        // 저거 0이면 '지찬' 앞에 '해조' 삽입
+        // 2이면 '지찬', '상민' 지워지고 '해조' 삽입
+
+        // arr.splice(1,1); '해조'로부터 한개 삭제 ('해조' 삭제)
+        console.log(arr);
+        // 간혹 삭제된것이 보여질 때가 있는데, return식이라 그렇다.
+
+        // 제거
+        // shift : 배열의 첫번째 인자를 제거
+        arr.shift();
+        console.log(arr);
+        // pop : 배열의 마지막 인자를 제거
+        arr.pop();
+        console.log(arr);
+
+        // 정렬
+        // 정렬 조건을 설정할 수 있다.
+        // * prac폴더의 정렬 참고, 생활코딩 단어사전 sort 참고
+        arr.sort();
+        console.log(arr);
+    </script>
+</body>
+</html>
