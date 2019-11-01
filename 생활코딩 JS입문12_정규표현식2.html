@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 사례
+        // 1. 캡처
+        var pattern = /(\w+)\s(\w+)/;
+        // 정규표현식에서의 ..
+        // 1) () : 그룹을 의미한다
+        // 2) \w : 문자를 의미한다. (abcde..ABCDE..0123..)
+        //      ex) #은 \w 미포함.
+        //      ex) A은 \w 포함.
+        // 3) + : 수량자 (앞의 문자 \w가 하나 이상임을 의미)
+        //      ex) AA은 \w 미포함이였지만, +가 오게되면서 포함됨.
+        // 4) \s : space(공백, 띄어쓰기)
+
+        // 문자와 문자 사이에 공백이 있어야 한다. 라는 뜻
+        // ex) 'codingeverybody' = (\w+)
+        // ex) 'coding ' = (\w+)\s
+        // ex) 'coding everybody' = (\w+)\s(\w+)
+        var str = 'coding everybody';
+        var result = str.replace(pattern, '$2, $1');
+        // $는 그룹을 의미한다.
+        // $2는 두번째그룹인 everybody
+        // $1는 첫번째그룹인 coding
+        console.log(result) // everybody, coding
+        // 결과
+        // coding everybody -> everybody, coding
+    </script>
+</body>
+</html>

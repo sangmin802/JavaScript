@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1. 컴파일
+            특정 대상에서 수정하거나 대체하기위해 우리가 필요한 부분을 찾는 것.
+            * 패턴을 찾는것
+        2. 컴파일 이후 실행
+
+        패턴 만드는 방법
+        1. 정규표현식 리터럴
+        var pattern = /a/;
+            * /사이의 a가 우리가 찾고자하는 대상임을 선언
+        2. 정규표현식 객체 생성자
+        var pattern = new RegExp('a');
+            * Regular Expression
+
+            ** 둘 다 같은 뜻이지만, 서로 장단점이 있다.
+
+        
+        정규표현식 사용 용도.
+            1. 원하는 부분을 찾아서, 추출해내는 것.
+                ex) 긴 문자열 내에서 주소만 찾는다.
+            2. 선언한 패턴이 정보 내에 존재하는지 유무를 테스트.
+            3. 찾아낸 패턴을 다른 패턴으로 치환(대체)하는 것.
+     -->
+     <script>
+        // pattern은 정규표현식으로 선언되었기 때문에, 정규표현식 객체를 사용할 수 있음
+        // 아래에 설명되는 함수들은 모두 정규표현식 객체 내부에있는 함수들
+        // 찾고자하는 것(a)을 선언 
+        var pattern = /a/;
+        var pattern2 = /a./; // .은 한개의 문자를 의미
+        // .이 어떤문자든 상관없이 한개는 있어야하고, 무조건 a 바로 뒤에 있어야 함
+
+        // exec() : 추출
+        // exec의 인자 안에서 내가 선언한 패턴을 찾고, 찾은 값을 배열로 리턴한다.
+        // a를 찾고싶어.실행시키는대상은('abcde')
+        console.log(pattern.exec('abcde')) // ['a'] a가 있어서 a 출력
+        console.log(pattern2.exec('abcde')) // ['ab']
+        // 그래서 '.' 대신에 a 바로 뒤의 b가 같이출력
+        console.log(pattern.exec('bcdef')); // null
+        // 찾고자하는 a가 대상에서 존재하지 않음
+
+        // test() : 존재유무 확인
+        // 존재의 유무를 파악해 boolean값으로 리턴한다.
+        console.log(pattern.test('abcde')); // true
+        console.log(pattern.test('bcdef')); // false
+        
+        var string = 'abcdef';
+        var string2 = 'bcdef';
+        // exec()와 동일
+        console.log(string.match(pattern)); // ['a']
+        console.log(string2.match(pattern)); // null;
+
+        // replace() : 치환
+        // 치환만 위의 방법으론 안된다. 숙지하자
+        console.log(string.replace(pattern, 'A')) // 'Abcdef'
+        // 정보.대체(바뀔패턴, 바꿀패턴)
+     </script>
+
+     <!-- 
+        정규표현식 옵션
+        1. i
+            i를 붙이면 대소문자를 구분하지 않는다.
+      -->
+      <script>
+          var xi = /a/;
+          var oi = /a/i;
+          console.log('Abcde'.match(xi)); // null i가 없어서 a !== A 임
+          console.log('Abcde'.match(oi)); // ['A'] i가 있어서 a === A임
+      </script>
+    <!-- 
+        정규표현식 옵션
+        2. g
+            g를 붙이면 검색된 모든 결과를 리턴한다.
+      -->
+      <script>
+          var xg = /a/;
+          var og = /a/g;
+          console.log('abcdea'.match(xg)) // ['a'] a가 두개여도 한개만 출력
+          console.log('abcdea'.match(og)) // ['a', 'a']
+      </script>
+    <!-- 
+        물론, ig 같이사용 가능
+     -->
+     <script>
+         var ig = /a/ig;
+         console.log('AabcdefAa'.match(ig)) // ['A', 'a', 'A', 'a']
+     </script>
+</body>
+</html>
