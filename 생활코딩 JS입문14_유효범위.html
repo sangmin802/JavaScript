@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>유효범위(Scope)는 변수의 수명을 의미한다.</h1>
+    <p>전역변수 : 자바스크립트 전역에서 활동하는 변수.</p>
+    <p>지역변수 : 자바스크립트 특정 함수 내에서만 활동하는 변수.</p>
+    <h3>결과물</h3>
+    <script>
+        var vscope = 'global'; // 전역변수
+        function fscope(){
+            vscope = 'local'; // 지역변수 // 이게 입력되는 순간 결과물은 'local'
+            var lv = 'local varibales';
+            document.write(vscope);
+        }
+        fscope(); // 'global' -> 'local';
+        // console.log(lv); // undefined 함수내의 변수인 지역변수라 함수밖에서는 모른다.
+
+        var vscope2 = 'global';
+        function fscope2(){
+            vscope2 = 'local'; // 결과물 : 'local';
+            // var vscope2 = 'local'; 결과물 : 'global';
+        }
+        fscope2();
+        document.write('<br>'+vscope2);
+        // 전역변수와, 지역변수의 key값이 같은 상황에서, 지역변수 앞에도 var가 붙는 순간, key는 같지만 다른 변수가 된다.
+        // 첫번째의 경우, 전역변수인 vscope2가 local로 바뀐것이고,
+        // 두번째의 경우, 전역변수와 같은 key인 지역변수가 하나 더 생긴 것이다.
+
+        // 프로젝트가 커졌을 때, 전역변수가 중첩되는 경우가 많기 때문에, 되도록이면 지역변수를 사용하는것이 좋다.
+    </script>
+    <h1>유효범위의 효용</h1>
+    <script>
+        function a(){
+            var i = 0; // var 지우게된다면, 전역변수인 i에 0이 대입
+        }
+        for(var i = 0; i < 5; i++){
+            a(); // 위에서 var 지우면 i는 계속 0이됨.(무한로딩)
+            document.write(i);
+        }
+    </script>
+    <h1>전역변수의 사용</h1>
+    <p>Myapp이라는 전역변수 하나만 만들고, 객체화시켜서 객체 소속으로 라벨화시켜서 분리시켜주면 좋다.</p>
+    <script>
+        var Myapp = {};
+        Myapp.calculator = {
+            'left' : null, // 연산에서 왼쪽수
+            'right' : null // 연산에서 오른쪽수
+        };
+        Myapp.coordinate = {
+            'left' : null, // 왼쪽
+            'right' : null  // 오른쪽
+        };
+        Myapp.calculator.left = 10;
+        Myapp.calculator.right = 20;
+        function sum(){
+            return Myapp.calculator.left+Myapp.calculator.right;
+        };
+        document.write(sum()); // 30
+    </script>
+    <p>근데, 위에서 Myapp이라는 전역변수(객체)또한 싫다. 단 하나의 전역변수도 만들고싶지 않을 때!</p>
+    <script>
+        // 함수를 생성하고, 즉시실행하는것 : 익명함수
+        (function(){
+            var Myapp = {}; // 함수 내의 지역함수가되었음.
+            Myapp.calculator = {
+                'left' : null, // 연산에서 왼쪽수
+                'right' : null // 연산에서 오른쪽수
+            };
+            Myapp.coordinate = {
+                'left' : null, // 왼쪽
+                'right' : null  // 오른쪽
+            };
+            Myapp.calculator.left = 10;
+            Myapp.calculator.right = 20;
+            function sum(){
+                return Myapp.calculator.left+Myapp.calculator.right;
+            };
+            document.write(sum()); // 30
+        }())
+    </script>
+    <h1>정적 유효범위</h1>
+    <p>자바스크립트 함수 내의 변수는 해당 함수에서 정의된 시점에서만 유효범위를 갖는다.</p>
+    <script>
+        var i = 5;
+        function a(){
+            var i = 10; // a()함수 내의 i만 10
+            b();
+        };
+        function b(){
+            document.write(i); // a()함수 내의 i는 모른다. 전역변수인 i = 5만 알 뿐.
+        }
+        a(); // 5
+    </script>
+</body>
+</html>
