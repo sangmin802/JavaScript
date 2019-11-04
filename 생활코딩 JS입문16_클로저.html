@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>클로저(closure)</h2>
+    <p>내부함수가 외부함수의 맥락(context)에 접근할 수 있는 것</p>
+    <h2>내부함수와 외부함수</h2>
+    <script>
+        function outer(){
+            // outer함수의 지역변수인 inner함수
+            function inner(){
+                var title = 'coding everybody';
+                document.write(title);
+            }
+            inner();
+        }
+        outer();
+    </script>
+    <h2>내부함수와 외부함수를 사용하는 이유</h2>
+    <p>내부함수는 외부함수 내의 지역변수를 사용할 수 있다. 이러한 것을 closure라고 한다.</p>
+    <script>
+        function outer(){
+            var title = 'coding everybody';
+            function inner(){
+                document.write(title);
+            }
+            inner();
+        }
+        outer();
+    </script>
+    <h2>독특한 예제</h2>
+    <p>결과 : 한번 내부함수로서 외부함수의 지역변수를 갖고왔다면, return을 통해 외부함수가 수명이 다하더라도, return된 내부함수는 해당 지역변수를 갖고있는다.</p>
+    <script>
+        // inner는 outer함수의 return값이다.
+        // 그 순간, outer함수는 모든 작업이 끝나고 죽은함수인데, inner를 실행시켰을 때에, 작업이 끝난 outer함수의 지역변수가 선언된다.
+        function outer(){
+            var title = 'coding everybody';
+            return function(){
+                document.write(title);
+            }
+        }
+        var inner = outer();
+        inner();
+    </script>
+    <h2>그래서 그걸 어디서 사용? -> private variable(비밀변수)</h2>
+    <script>
+        function factory_movie(title){ // 외부함수
+            return {
+                get_title : function(){ // 내부함수
+                    return title;
+                },
+                set_title : function(_title){ // 내부함수
+                    title = _title;
+                }
+            }
+        }
+        var Avengers = factory_movie('Avengers : Endgame');
+        var Zootopia = factory_movie('Zootopia');
+        // 둘 다 외부함수의 지역변수인 title을 사용한다.
+        // reuturn을 통해 두 변수에 객체가 담기는 순간 factory_movie함수는 수명이 다한다.
+        document.write(Avengers.get_title()+'<br>');
+        document.write(Zootopia.get_title()+'<br>');
+        Zootopia.set_title('주토피아'); // 외부함수의 지역변수(title)를 바꿈
+        document.write(Avengers.get_title()+'<br>');
+        document.write(Zootopia.get_title());
+
+        // 여기서 사용되는 변수인  title은 get_title과 set_title로만 접근할 수 있다.
+        // 여기서의 title을 가져오거나 수정하기 위해선 get_title과 set_title로만 가능하다.
+        // 다른 사람이 title을 어떻게 선언하든 변하지 않는다.
+    </script>
+    <h2>클로저의 응용</h2>
+    <script>
+        // var arr = [];
+        // for(var i = 0; i < 5; i++){
+        //     arr[i] = function(){
+        //          return i;
+        //     }
+        // }
+        // console.log(i)
+        // console.log(arr)
+        // for(var index in arr){
+        //     console.log(arr[index]()); // 5,5,5,5,5
+        // } // 첫번째 for문이 돌아가면서 그 순간순간의 i가 담기지 않고, 모든 시간이 흐른뒤 i가 5가됬을때만 다 담김.
+
+        var arr = [];
+        for(var i = 0; i < 5; i++){
+            arr[i] = function(id){ // i의 매개변수 (i를 인자로 넣고, 해당 외부함수에서 매개변수 id로 받아올때마다 바로바로실행) -> id라는 지역변수를 i가 변할때마다 생성
+                return function(){
+                    return id; // 외부함수의 지역변수인 id 리턴
+                }
+            }(i);
+        };
+        for(var index in arr){
+            console.log(arr[index]()); // 0,1,2,3,4
+        };
+        // 차이점.
+        // 아래의 방법은 closure로 내부함수가 외부함수의 지역변수를 가질수 있도록 해주었음.
+        // for문이 돌아가면서 arr[i]번째에 함수가 담기는데, 담기자마자 현재 i를 매개변수 id로 받아와 즉시 실행시킴.
+        // 그리고 즉시실행되는대로, 외부함수는 받아온 i(id)를 자신의 지역변수로 삼음. 그리고 내부함수는 과정이 끝나서 수명이 다하더라도, 그 외부함수의 지역변수를 기억함(내부함수의 특징)
+        // 그 내부함수는, arr[i]번째를 실행시켜야만 나오는 i의 변수로 누구도 바꿀 수 없는 비밀변수라 할 수 있음.
+    </script>
+</body>
+</html>
