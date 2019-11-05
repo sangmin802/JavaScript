@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>함수의 호출 apply</h2>
+    <p>함수는 일종의 객체이며 여러가지 내장된 메소드들을 갖고있는데, apply는 그러한 메소드이다.</p>
+    <script>
+        function sum(arg1, arg2){
+            return arg1+arg2;
+        }
+        document.write(sum(1,2)+'<br>');
+        document.write(sum.apply(null, [1,2]));
+        // 이렇게는 사용하면 안된다. 그냥 예시일 뿐
+    </script>
+    <h2>apply의 사용</h2>
+    <p>인자로 객체를 보냈을 때에, 함수에서 this로 잡을 수 있게 해줌</p>
+    <p>this와 관련된 내용이므로 this를 완전히 이해하고 다시보기</p>
+    <script>
+        o1 = {val1 : 1, val2 : 2, val3 : 3};
+        o2 = {v1 : 10, v2 : 50, v3 : 100, v4 : 25};
+        function sum(){
+            var _sum = 0;
+            for(name in this){ // this 는 o1 혹은 o2
+                _sum += this[name]; // _sum = _sum + this[name];
+            }
+            return _sum;
+        }
+        document.write(sum.apply(o1)+'<br>');
+        document.write(sum.apply(o2)+'<br>');
+    </script>
+    <h2>aplly는 인자배열을, call은 인자 하나를 받는다고 함.</h2>
+    <p>기본적으로 함수내에서 this는 window전체를 의미하는데, 이러한 this를 변경하고자할 때에 apply와 call을 사용한다고 한다.</p>
+    <a href="https://beomy.tistory.com/4" target="_blank">추가정보</a>
+</body>
+</html>
