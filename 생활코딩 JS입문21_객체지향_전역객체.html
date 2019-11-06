@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>전역객체?</h2>
+    <p>func라는 함수는(우리가 생성한 함수는), window객체(전역객체)의 메소드이기도 하다(혹은 전역객체.객체.메소드).</p>
+    <script>
+        function func(){
+            document.write('전역객체!'+'<br>')
+        }
+        func();
+        window.func(); // window는 객체
+        
+        var o = {func : function(){
+            document.write('전역객체!<br>');
+        }}
+        o.func();
+        window.o.func();
+    </script>
+</body>
+</html>

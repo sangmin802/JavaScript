@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>함수와 this</h2>
+    <p>this는 함수 내에서 함수 호출 맥락(context)를 의미한다. 맥락이라는 것은 상황에 따라서 달라진다는 의미인데, 즉 함수를 어떻게 호출하느냐에 따라 this가 가리키는 대상은 달라진다.</p>
+    <h3>함수 내에서의 this는 window를 의미한다.</h3>
+    <script>
+        function func(){
+            if(window === this){
+                document.write('this === window');
+            }
+        }
+        func();
+    </script>
+    <h3>객체의 소속인 메소드(함수)의 this는 그 객체를 가르킨다</h3>
+    <script>
+        var o = {
+            func : function(){
+                if(o === this){
+                    document.write('this === 객체');
+                }
+            }
+        }
+        o.func();
+    </script>
+    <h3>여기서 잠깐 보면<br>
+        그냥 함수 : window.func()<br>
+        객체 내 메소드(함수) : window.o.func()<br>
+        함수 내의 this는 자신의 함수혹은 변수가 소속되어있는 부모 객체를 뜻한다라고 생각하면 될듯하다
+    </h3>
+    <h3>생성자(constructor)와 this</h3>
+    <p>객체생성자로 생성된 this는 생성된 객체를 의미한다.</p>
+    <script>
+        var funcThis = null;
+        function Func(){
+            funcThis = this;
+        }
+        var o1 = Func();
+        if(funcThis === window){
+            document.write('this === window<br>');
+        }
+        var o2 = new Func(); // var o2 = {}
+        if(funcThis === o2){
+            document.write('this === 객체생성자로 생성된 객체'); // this === o2
+        }
+    </script>
+    <h2>객체로서 함수(apply, call)</h2>
+    <p>함수에서 this는 window지만, 함수에서 this값을 보내는 인자로 바꾸고자 할 때에 함수의 기본 메소드중 하나인 apply를 사용하자.</p>
+    <p>마치 실행되는 함수가, 보내지는 객체인 인자 내부의 메소드인 것처럼 바뀐다.</p>
+    <script>
+        var o = {};
+        var p = {};
+        function func(){
+            switch(this){
+                case o : {
+                    document.write('this === 객체o<br>');
+                }break;
+                case p : {
+                    document.write('this === 객체p<br>');
+                }break;
+                case window : {
+                    document.write('this === window<br>');
+                }break;
+            }
+        }
+        func();
+        func.apply(o);
+        func.apply(p);
+    </script>
+</body>
+</html>
