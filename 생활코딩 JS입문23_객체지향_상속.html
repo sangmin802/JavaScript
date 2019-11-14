@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>상속</h2>
+    <p>만약, 객체생성자로 생성된 객체가 prototype을 통해 속성이나 메소드를 갖고있다면, 해당 속성, 메소드는 다른 객체생성자의 prototype으로 갖고와서 사용할 수 있다.<br>
+    그대로 갖고와서 사용할 수 있을 뿐 아니라, 속성이나 메소드를 추가할 수 도 있다.</p>
+    <script>
+        function person(name){
+            this.name = name;
+            this.introduce = function(){
+                return 'My name is '+this.name;
+            }
+        }
+        var p1 = new person('지찬');
+        document.write(p1.introduce()+'<br>'); // My name is 지찬
+    </script>
+    <h2>상속을 위한 준비작업</h2>
+    <script>
+        function person(name){
+            this.name = name;
+        }
+        person.prototype.name = null;
+        person.prototype.introduce = function(){
+            return 'My name is '+this.name;
+        }
+        // person이라는 생성자 메소드로 개체를 만들고, 기본적으로 제공되는 속성인 prototype안에 name과, introduce메소드를 넣었다.
+        var p1 = new person('상혁');
+        document.write(p1.introduce()+'<br>'); // My name is 상혁
+    </script>
+    <h2>상속의 사용방법</h2>
+    <div>1. new person 생성자는 prototype이라는 속성을통해 name과 introduce메소드를 갖고있다.</div>
+    <div>2. 그리고 programmer라는 생성자의 prototype속성은 new person생성자를 통해 만들어진 prototype이다.</div>
+    <p>어떠한 생성자를 통해(얘도 생성자.prototype의 형식) 만들어진 객체를 사용하고 싶을 때, 다른 생성자의 prototype에 대입시키면 된다.</p>
+    <p>그런데, 사실상 이렇게 받은 객체를 동일하게 사용하려고 상속을 쓰진 않는다..</p>
+    <script>
+        function person(name){
+            this.name = name;
+        }
+        person.prototype.name = null;
+        person.prototype.introduce = function(){
+            return 'My name is '+this.name;
+        }
+        function programmer(name){
+            this.name = name;
+        }
+        programmer.prototype = new person();
+        // new person 생성자는 prototype이라는 속성을통해 name과 introduce메소드를 갖고있다.
+        // 그리고 programmer라는 생성자의 prototype속성은 new person생성자를 통해 만들어진 prototype이다.
+
+        var p1 = new programmer('태균');
+        document.write(p1.introduce()+'<br>');
+    </script>
+    <h2>기능의 추가</h2>
+    <p>받은 객체를 사용하는 것이 아닌, 새로운 기능을 추가하는 방법</p>
+    <script>
+        function person(name){
+            this.name = name;
+        }
+        person.prototype.name = null;
+        person.prototype.introduce = function(){
+            // 모두 한번에 바뀜
+            // return 'My name is '+this.name;
+            return '내 이름은 '+this.name;
+        }
+        function programmer(name){
+            this.name = name;
+        }
+        programmer.prototype = new person();
+        // programmer.prototype은 new person생성자의 prototype이다.
+        programmer.prototype.coding = function(){
+            return "코딩 가능"
+        }
+        // programmer.prototpype에 coding이라는 메소드를 추가한다.
+        function Desinger(name){
+            this.name = name;
+        }
+        Desinger.prototype = new programmer();
+        Desinger.prototype.design = function(){
+            return "디자인 가능"
+        }
+
+        function FrontEnd(name){
+            this.name = name;
+        }
+        FrontEnd.prototype = new Desinger();
+
+        var p1 = new programmer('원빈');
+        var p2 = new Desinger('준성');
+        var p3 = new FrontEnd('상민');
+        document.write(p1.name+p1.introduce()+p1.coding()+'<br>');
+        document.write(p2.name+p2.introduce()+p2.design()+'<br>');
+        // 갖고오려고하는 생성자의 prototype이 다른 생성자의 prototpye+자신만의 prototype일 경우 둘 다 합쳐져서 같이 받아와진다.
+        document.write(p3.name+p3.introduce()+p3.coding()+p3.design()+'<br>');
+        // 이런느낌
+        // person = {
+        //     programmer = {
+
+        //     },
+        //     Desinger = {
+
+        //     }
+        // }
+    </script>
+</body>
+</html>
