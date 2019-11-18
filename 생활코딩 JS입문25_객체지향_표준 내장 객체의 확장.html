@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Standard Built-in Object(내장객체) : 자바스크립트가 기본적으로 제공하는 객체</h2>
+    <ul>
+        <li>Object : 객체</li>
+        <li>Function : 함수 혹은 메소드</li>
+        <li>Array : 배열</li>
+        <li>String : 문자열 변환</li>
+        <li>Boolean : true & false</li>
+        <li>Number : 숫자열 변환</li>
+        <li>Math : 숫자 함수</li>
+        <li>Date : 날짜 함수</li>
+        <li>RegExp : 정규표현식</li>
+    </ul>
+    <h2>내장객체에 기능 추가하기</h2>
+    <script>
+        var arr2 = new Array('seoul', 'new york', 'ladarkh', 'pusan', 'Tsukuba');
+        function getRandomValueFromArray(_arr){
+            var index = Math.floor(Math.random()*arr.length);
+            return _arr[index];
+        }
+
+        setInterval(function(){
+            var html = document.querySelector('.text');
+            html.innerHTML = getRandomValueFromArray(arr2);
+        }, 1000);
+    </script>
+    <div class="text"></div>
+    <h2>prototype을 위의 Array를 활용한 함수에 접해보기</h2>
+    <div class="text2"></div>
+    <h3>해설</h3>
+    <div>1. 배운바를 통해 new Array()로 배열을 생성하는것 또한, 객체생성자임을 알 수 있다.</div>
+    <div>2. 그렇다면 내장객체 생성자 또한 고유의 원형객체인 prototype을 모두 갖고있다.</div>
+    <div>3. 우리는 이러한 고유의 원형객체인 prototpye에 새로운 메소드나 프로퍼티를 추가하여 해당 생성자를 통해 만들어지는 모든 결과물에, 내가 prototype에 넣은 메소드나 프로퍼티를 사용할 수 있다.</div>
+    <div>4. new Array()라는 배열 객체 생성자의 prototype에 random이라는 메소드를 넣는다</div>
+    <div> 1) Array.prototype.메소드 이기 때문에, 해당 메소드의 이름이 많이 짧아질 수 있다. getRandomValueFromArray -> random</div>
+    <div> 2) 해당 메소드안의 매개변수는 this가 된다(객체생성자 내의 this는 해당 객체가 된다. 여기서는 arr자체가 this가 됨.)</div>
+    <div> 3) 호출할 때, arr.random()</div>
+    <div>var arr = new Array('상민', '지찬', '상혁', '태균', '원빈'); 여기서 var arr는 new Array의 prototype또한 사용할 수 있게 됨.</div>
+    <script>
+        Array.prototype.random = function(){
+            var index = Math.floor(Math.random()*this.length);
+            return this[index];
+        }
+        var arr = new Array('상민', '지찬', '상혁', '태균', '원빈');
+
+        setInterval(function(){
+            var html = document.querySelector('.text2');
+            html.innerHTML = arr.random();
+        }, 1000);
+    </script>
+</body>
+</html>

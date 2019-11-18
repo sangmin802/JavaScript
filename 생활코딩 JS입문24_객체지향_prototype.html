@@ -7,6 +7,44 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h2>Prototype : 객체의 원형이라 할 수 있다. 비어있는 객체를 객체생성자를 통해 생성할 때에, 해당 객체에 prototype이라는 property(속성)을 만들어 그 안에 값을 보관<br>해당 prototype이 포함된 객체생성자는 다른 객체의 prototype이 될 수 있다.</h2>
+    <div>객체는 프로퍼티(속성. 물론 메소드도 가질 수 있음)를 가질 수 있는데, prototpye이라는 프로퍼티는 그 용도가 약속되어있는 특수한 프로퍼티이며, 해당 프로퍼티에 저장된 프로퍼티들은 생성자를 통해서 객체가 만들어질 때 그 객체에 연결된다.(즉, 재활용할 수 있다.)</div>
+    <div>생성자는 기본적으로 함수이다. 이러한 함수를 통해 새로운 객체를 만들어서 해당 객체를 return한다.</div>
+    <div>객체를 만들 때에, 그냥 var obj = {}; 이런식으로 해도 되지만,</div>
+    <div>객체가 생성될 때마다 기본적으로 어떠한 메소드나, 속성들을 갖고 생성될 수 있도록 하기 위해 객체생성자를 사용한다.</div>
+    <script>
+        // 솔직히 객체를 생성할 때에, 객체생성자가아니라
+        var obj = {};
+        // 이래도 그만. 근데 안에 비어있다면 쓰는 의미가 없지?
+
+        function func(){};
+        func.prototype.name = '상민';
+
+        var o = new func();
+        console.log(o);
+    </script>
+    <h2>Prototype chain</h2>
+    <div>객체생성자가 prototype을 통해 이어져있음. 따라서, prototype으로 만들어진 속성을 검색했을 때, 위로 올라가면서 뒤져봄. 해당 객체에 없으면 상위객체로 올라가서 찾는 방식.</div>
+    <script>
+        function Ultra(){};
+        Ultra.prototype.ultraProp = true; // console = true
+
+        function Super(){};
+        var t = new Ultra();
+        t.ultraProp = 4; // console = 4
+        Super.prototype = t;
+
+        function Sub(){};
+        Sub.prototype = new Super();
+
+        var s = new Super();
+        // s.ultraProp = 3; // console = 3
+        Sub.prototype = s;
+        // Sub.prototype.ultraProp = 2; // console = 2
+        
+        var o = new Sub();
+        // o.ultraProp = 1; // console = 1
+        console.log(o.ultraProp);
+    </script>
 </body>
 </html>
