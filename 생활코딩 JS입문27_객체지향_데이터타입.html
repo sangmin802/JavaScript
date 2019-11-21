@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>원시 데이터타입과 객체</h2>
+    <div>'.' 은 객체 접근자이다.</div>
+    <ul>
+        <li>기존의 원시 데이터타입</li>
+        <li>숫자</li>
+        <li>문자</li>
+        <li>Boolean</li>
+        <li>null</li>
+        <li>undefined</li>
+    </ul>
+    <h2>레퍼객체</h2>
+    <div>문자열(var 등으로 선언이 된)등의 원시 데이터에 객체접근자인 .을 붙여서 임시적으로 객체로 바꾸는(?)것을 레퍼객체라고 한다.</div>
+    <div>ex) str.length()</div>
+    <script>
+        var str = '상민';
+        str.prop = '박'; // 문자열에 .(객체 접근자)을 붙여 객체로 사용할꺼라는 신호를 보내서 오류가 생기지 않음.
+        console.log(str.prop); // undefined
+    </script>
+</body>
+</html>

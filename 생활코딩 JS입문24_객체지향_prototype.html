@@ -28,10 +28,10 @@
     <script>
         function Ultra(){};
         Ultra.prototype.ultraProp = true; // console = true
+        var t = new Ultra();
 
         function Super(){};
-        var t = new Ultra();
-        t.ultraProp = 4; // console = 4
+        t.ultraProp = 4; // console = 4 // t의 그냥 속성(prototype속성이 아닌)
         Super.prototype = t;
 
         function Sub(){};

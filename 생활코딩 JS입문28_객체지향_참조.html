@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>복제</h2>
+    <div>전자화의 가장 큰 장점은 복제가 쉽다는 것이다.</div>
+    <script>
+        var a = 1;
+        var b = a;
+        b = 2;
+        console.log(a); // 1
+    </script>
+    <h2>참조</h2>
+    <script>
+        var a = {'id' : 1};
+        var b = a;
+        b.id = 2;
+        console.log(a.id); //2;
+    </script>
+    <h3>원시데이터 : 변화를 공유하지 않는다(복제).</h3>
+    <div>쉽게말해, 원시데이터는 copy를 했을 때, 그 순간 둘은 내용은 서로 같지만 다른 값이라 보면 된다.</div>
+    <h3>객체데이터 : 변화를 공유한다(참조).</h3>
+    <div>객체데이터는 참조된다한다</div>
+    <div>쉽게말해, 객체데이터는 copy를 했을 때, 그 순간 둘은 내용도 같으며, 서로 연동되어있어서 수정되면 같이수정된다. -> 서로 같은 객체를 바라보고있음</div>
+    <br>
+    <div>flyer할 때 객체를 다른 변수로 copy했을 때 수정을 하면 둘 다 바뀌었음.</div>
+    <h2>예외</h2>
+    <script>
+        var a = {'id' : 1};
+        var b = a;
+        b = {'id' : 2};
+        console.log(a.id); //1;
+    </script>
+    <div>해당 조건에서는, b는 다른 객체를 바라보게 됨. 즉 var b = a가 씹힘</div>
+    <h2>함수와 참조</h2>
+    <h3>원시데이터타입을 인자로 넘겼을 때</h3>
+    <div>원시데이터타입이기 때문에, 복제가 되어 서로 값을 공유하지 않음.</div>
+    <script>
+        var a = 1;
+        function func(b){
+            b = 2;
+        }
+        func(a);
+        document.write(a); // 1
+    </script>
+    <h3>참조데이터타입을 인자로 넘겼을 때</h3>
+    <div>참조데이터타입이긴 하지만, 함수 내에서 보내진 인자(받은 매개변수)가 다른 객체를 바라보도록 설정하였기 때문에 값은 공유하지 않음.</div>
+    <script>
+        var a = {'id' : 1};
+        function func(b){
+            b = {'id' : 2};
+        }
+        func(a);
+        document.write(a.id); // 1
+    </script>
+    <div>근데 위처럼 함수 내의 매개변수의 값은 지역변수라 공유안한다고 보는게 맞을듯?</div>
+    <h3>다른예시</h3>
+    <h3>참조데이터타입에서, 함수로 보내진 인자(받은 매개변수)가 다른 객체를 바라보는것이 아닌, 그 객체 내의 값을 바꿨기 때문에 공유되고 있음.</h3>
+    <div>포폴하면서 많이 써봤지?</div>
+    <script>
+        var a = {'id' : 1};
+        function func(b){
+            b.id = 2;
+        }
+        func(a);
+        document.write(a.id); // 2
+    </script>
+</body>
+</html>

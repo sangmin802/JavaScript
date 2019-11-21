@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>자바스크립트는 값을 저장하는 기본적인 단위로 Object(객체)를 사용한다</h2>
+    <div>Object는 모든 객체들의 부모가 되기 때문에, Object의 prototype은 모든 객체의 prototype이 될 수 있다.</div>
+    <h2>Object API 사용법</h2>
+    <div>object를 검색하면, object만의 여러 메소드와 속성들을 볼 수 있다.</div>
+    <div>그런데, object.메소드와 object.prototype.메소드는 무슨차이일까?</div>
+    <h3>object.메소드</h3>
+    <script>
+        var arr = ['a', 'b', 'c']; // 배열도 객체이다. 키는 index로 숫자형식이며 값만 보여주는 객체
+        document.write('object.keys(arr) = ', Object.keys(arr)+'<br>');
+        var object = {name: '상민', age : '25', city : 'Ilsan'};
+        document.write('object.keys(object) = ', Object.keys(object));
+        // keys는 객체에서 key값만 가져와 배열로 반환하는 메소드
+    </script>
+    <h3>object.prototype.메소드</h3>
+    <script>
+        var o = new Object();
+        document.write('o.toString() = ', o.toString()+'<br>');
+        var a = new Array(1,2,3);
+        document.write('a.toString() = ', a.toString());
+    </script>
+    <script>
+        function Dog(name, breed, color, sex) {
+            this.name = name;
+            this.breed = breed;
+            this.color = color;
+            this.sex = sex;
+        }
+
+        theDog = new Dog('Gabby', 'Lab', 'chocolate', 'female');  
+        Dog.prototype.toString = function (){
+            return 'Dog ' + this.name + ' is a ' + this.sex + ' ' + this.color + ' ' + this.breed;
+        }
+        console.log(theDog.toString());
+        console.log(Object); // 객체 생성자
+        console.log(new Object()) // 생성된 객체
+    </script>
+    <h3>솔직히 뭔차이인지 잘 모르겠음</h3>
+    <div>그냥 객체생성자에서 prototype을 통해 하위 객체들도 사용할 수 있게 해주는것만 알면 되나?</div>
+    <h3>Object.메소드 : 객체 생성자 함수 안에 있는 메소드를 사용하겠다.</h3>
+    <div>ex ) object.keys = function()... 객체가 기본적으로 제공하는 메소드들인것같다.</div>
+    <h3>Object.prototype.메소드 : 객체 생성자 함수를 통해 객체가 생성될 때에, 기본적으로 prototype이라는 원형객체에 포함되어 나오는 메소드들.</h3>
+    <div>실제로 console(Object.prototype)을 했을 때, 해당 메소드들이 찍혀나온다.</div>
+    <h2>Object 확장</h2>
+    <script>
+        var o = {'name' : '상민', 'city' : 'Goyang'};
+        var a = ['상민', '지찬', '원빈'];
+        Object.prototype.contain = function(needle){
+            for(var name in this){
+                if(this[name] === needle){
+                    return true;
+                }
+            }
+            return false;
+        }
+        document.write(o.contain('태균')+'<br>');
+        document.write(a.contain('지찬'));
+    </script>
+    <h2>Object 확장의 위험</h2>
+    <h3>Object, Array 등 광역객체에 prototype을 추가하는것은 매우 위험하다.</h3>
+    <div>Object에 prototype을 했다면, 객체의 경우 for문을 돌렸을 때, prototype의 메소드도 찍혀나온다.</div>
+    <script>
+        var o = {'name' : '상민', 'city' : 'Goyang'};
+        var a = ['상민', '지찬', '원빈'];
+        for(var i in o){
+            // if(o.hasOwnProperty(i)){
+                document.write(i+'<br>')
+            // }
+        }
+    </script>
+    <div>고유 속성, 메소드만 for문으로 검색하고 싶다면, Object.hasOwnProperty(for문 값)을 조건으로 걸자</div>
+</body>
+</html>
