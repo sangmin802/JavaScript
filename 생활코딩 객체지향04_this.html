@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var kim = {
+        //     name : 'kim',
+        //     first : 10,
+        //     second : 20,
+        //     sum : function(f, s){
+        //         return f+s;
+        //     }
+        // }
+        // console.log(kim.sum(kim.first, kim.second));
+
+        var kim = {
+            name : 'kim',
+            first : 10,
+            second : 20,
+            sum : function(){
+                return this.first+this.second;
+            }
+        }
+        console.log(kim.sum());
+    </script>
+</body>
+</html>

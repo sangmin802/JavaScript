@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('Math.PI', Math.PI);
+        console.log('0~100', Math.random()*100);
+        console.log('Math.floor(3.9)', Math.floor(3.9));
+        // Math라는 내장객체 안에 있는 메소드들을 활용
+
+        var MyMath = {
+            PI : Math.PI,
+            random : function(){
+                return Math.random()*100;
+            },
+            floor : function(num){
+                return Math.floor(num);
+            }
+        }
+        console.log('Mymath.PI', MyMath.PI);
+        console.log('MyMath.random', MyMath.random());
+        console.log('MyMayh.floor', MyMath.floor(2.7));
+    </script>
+</body>
+</html>

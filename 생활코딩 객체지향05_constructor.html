@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var kim = {
+            name : 'kim',
+            first : 10,
+            second : 20,
+            sum : function(){
+                return this.first+this.second;
+            }
+        }
+        var lee = {
+            name : 'lee',
+            first : 10,
+            second : 10,
+            sum : function(){
+                return this.first+this.second;
+            }
+        }
+
+        var MemberDB = [];
+        function Person(name, age){
+            this.name = name,
+            this.age = age,
+            this.introduce = function(){
+                return '이름 : '+this.name+' 나이 : '+this.age;
+            }
+        }
+        MemberDB.push(new Person('지찬', 25));
+        MemberDB.push(new Person('상혁', 24));
+        console.log(MemberDB);
+        console.log(MemberDB[0].introduce());
+        console.log(MemberDB[1].introduce());
+    </script>
+</body>
+</html>
