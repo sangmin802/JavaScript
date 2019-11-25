@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>prototype? __proto__?</h2>
+    <script>
+        var superObj = {superValue : 'super'};
+        var subObj = {subValue : 'sub'};
+        subObj.__proto__ = superObj;
+        console.log(subObj.subValue);
+        console.log(subObj.superValue);
+        subObj.superValue = 'sub';
+        console.log(superObj.superValue); // 안바뀜
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var superObj = {superValue : 'super'};
+        // var subObj = {subValue : 'sub'};
+        // subObj.__proto__ = superObj;
+        var subObj = Object.create(superObj); // superObj를 부모로 하는 subObj를 만들어.(superObj에 subObj를 상속시켜)
+        subObj.subVal = 'sub';
+        // debugger; 개발자도구에서 이부분까지만 스크립트가 작동되고, 객체처럼 내가 보고싶은 부분만 클릭해서 어떤 상태인지 볼 수 있음
+    </script>    
+</body>
+</html>

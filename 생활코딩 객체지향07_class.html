@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>new 를 통한 객체생성자(constructor)</h2>
+    <script>
+        function Person(name, age){
+            this.name = name,
+            this.age = age
+        }
+        Person.prototype.introduce = function(){
+            return '이름 : '+this.name+' 나이 : '+this.age;
+        }
+        var p1 = new Person('지찬', 25);
+        p1.introduce = function(){
+            return '이름 : 정'+this.name+' 나이 : '+this.age+'세';
+        } // 원래 p1에게는 introduce라는 메소드가 없고 prototype으로만 있었지만, 새롭게 만들어주어 이것이 우선순위가 되고 prototype의 것은 우선순위에서 밀림
+        var p2 = new Person('상혁', 24);
+        console.log(p1.introduce());
+        console.log(p2.introduce());
+    </script>
+    <h2>class 를 통한 객체생성</h2>
+    <script>
+        class Friend {
+            constructor(name, age){ // Class를 통해 객체가 생성되는 과정에서, 가장 먼저 실행하는 메소드
+                this.name = name;
+                this.age = age;
+            }
+            introduce(){
+                return '이름 : '+this.name+' 나이 : '+this.age;
+            }
+        }
+        var p1 = new Friend('준성', 25);
+        console.log(p1.introduce());
+    </script>
+    <div>class와 new 둘 다 객체지향을 위한 기능이며, 둘 다 prototype을 통한 메소드 추가가 가능하다.</div>
+    <div>다만, class 는 java에서 먼저 사용되던 객체지향 기능이다</div>
+    <div>Angular에서 export class 하고, 내부에 constructor구조도 동일한 것으로 보아 Angular 또한 객체지향 프로그래밍인듯 하다.</div>
+</body>
+</html>

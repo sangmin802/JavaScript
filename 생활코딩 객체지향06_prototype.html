@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>new 생성자를 통해 객체를 만드는 것 또한 아~주 좋은방법이지만, prototype이라는 원형객체를 활용하면 메모리를 더 줄일 수 있다.</h2>
+    <div>기존대로라면, 생성자를 통해 객체를 만들면 같은 모양의 속성 혹은 메소드들이 계속해서 작성되어 메모리낭비와 속도가 느려지게되는데, prototype이라는 원형객체를 활용하면 한번만 작성한 뒤, 가져다 쓰므로 위의 문제를 보완할 수 있다.</div>
+    <div>대게, 객체생성자에서 속성은 그냥 그 안에 쓰고, 메소드들은 prototype으로 설정해준다.</div>
+    <h3>
+        prototype으로 설정한 객체 통째로 갖고오는데, 이름이나 나이는 기존 객체에도 갖고있기 때문에, 출력을 하려 할 떄 1순위임. 하지만 메소드는 존재하지 않기때문에, prototype의 메소드가 1순위가 됨
+    </h3>
+    <script>
+        function Person(name, age){
+            this.name = name,
+            this.age = age
+        }
+        Person.prototype.introduce = function(){
+            return '이름 : '+this.name+' 나이 : '+this.age;
+        }
+        var p1 = new Person('지찬', 25);
+        p1.introduce = function(){
+            return '이름 : 정'+this.name+' 나이 : '+this.age+'세';
+        }
+        var p2 = new Person('상혁', 24);
+
+        function Person2(name){
+            this.name = name
+        }
+        Person2.prototype = new Person();
+        console.log(new Person2('태균'));
+        console.log(new Person2('태균').introduce());
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var p1 = {
+            name : '태균',
+            age : 25,
+            inform : function(){return '이름 : '+this.name+' 나이 : '+this.age}
+        }
+        // var p2 = {
+        //     name : '원빈',
+        //     age : 23,
+        //     introduce : function(){return '안녕! 내 이름은 '+this.name+' 이야'}
+        // }
+        // p2.__proto__ = p1;
+        p2 = Object.create(p1); // 이것이 권장되는 방법이다.
+        p2.name = '원빈';
+        p2.age = 23;
+        p2.introduce = function(){return '안녕! 내 이름은 '+this.name+' 이야<br>'};
+        document.write(p2.inform()+'<br>'+p2.introduce());
+
+        function text(){
+            // introduce = function(){return '안녕! 내 이름은 '+this.name+' 이야'};
+            // inform = function(){return '이름 : '+this.name+' 나이 : '+this.age};
+        }
+        text.prototype.introduce = function(){return '안녕! 내 이름은 '+this.name+' 이야'};
+        text.prototype.inform =  function(){return '이름 : '+this.name+' 나이 : '+this.age};
+        person = Object.create(new text());
+        person.name = '지찬';
+        person.age = '25';
+        console.log(person);
+        document.write(person.inform()+'<br>');
+        document.write(person.introduce());
+    </script>
+</body>
+</html>
