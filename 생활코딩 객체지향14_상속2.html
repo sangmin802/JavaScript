@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>class</h2>
+    <script>
+        class Person2 {
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            // prototype의 영역이다.
+            inform(){
+                return '이름 : '+this.name+' 나이 : '+this.age;
+            }
+        }
+        class PersonPlus2 extends Person2{
+            constructor(name, age, job){
+                super(name, age);
+                this.job = job;
+            }
+            inform(){
+                return super.inform()+'입니다.';
+            }
+            introduce(){
+                return '제 이름은 '+this.name+'이고, 나이는 '+this.age+'살 입니다.<br> 직업은 '+this.job+' 입니다.'
+            }
+        }
+        console.log(new Person2('지찬', 25))
+        var p2 = new PersonPlus2('지찬', 25, 'BJ');
+        document.write(p2.inform()+'<br>'+p2.introduce());
+    </script>
+    <h2>constructor(a라는 객체를 누구로부터 만들었는지 찾는 속성)</h2>
+    <script>
+        function friend(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        friend.prototype.inform = function(){
+            return this.name+','+this.age;
+        }
+        function friendPlus(name, age, job){
+            friend.call(this, name, age); // super와 동일한 역할 수행
+            // friend = function(this(생성된 객체), name, age){
+            //     this.name = name; // 생성된 객체의 이름은 이
+            //     this.age = age;
+            // }
+            this.job = job;
+        }
+        // friendPlus.prototype.__proto__ = friend.prototype;
+        // 얘는 p2.construcor 했을 때, friendPlus.prototype의 constructor에서 멈추기 때문에 friendPlus가 나옴.
+        // replace하지 않음.
+        friendPlus.prototype = Object.create(friend.prototype);
+        // 위랑 결과물은 같으나, 서로 다름.
+        // Object.create의 방법은, friend.prototype을 부모로하는(에게서 상속을 받는) friendPlus.prototype이라는 선언. 즉, friendPlus.prototype의 constructor는 더이상 friendPlus가 아니게 됨.
+        // replace함
+        // 왜냐. 더이상 friendPlus라는 constructor는 존재하지 않음.
+        // 순서를 보자. p2.constructor를 찾을 때
+        // p2객체에는 없어서 __proto__를 통해 friendPlus생성자의 prototype으로 감.
+        // 근데, 위의 조건으로 인해 friendPlus의 prototype은 friend의 prototype에게서 생성(상속 받게됨)이 되고 constructor가 사라짐.
+        // 그래서, 객체생성자의 특성상, 원하는 속성을 찾을 때, 위로 거슬러올라가면서, friend.prototype이 부모이기때문에, 얘의 constructor는 friend에서 끝이남
+        friendPlus.prototype.constructor = friendPlus;
+        // 그래서 직접적으로 다시 지정을 해줌.
+        friendPlus.prototype.introduce = function(){
+            return '제 이름은 '+this.name+'이고, 나이는 '+this.age+'살 입니다.<br> 직업은 '+this.job+' 입니다.'
+        }
+        var p2 = new friendPlus('지찬', 25, 'BJ');
+        console.log(p2.constructor)
+        console.log(new friendPlus()) // 위에서 직접지정을 안해줬을 때, friend에서 constructor가 사라져있음.
+        // 근데 잦같게도 prototype에 메소드를 직접적용하는 태그의 위치가 저 태그 위라면 오류가 뜸
+        document.write(p2.introduce());
+        document.write(p2.inform()+'<br>'+p2.introduce());
+    </script>
+    <h2>근데! class를 사용하자</h2>
+    <div>사용하기에는 class가 더 간단하고, 보기좋지만, javaScript에서 prototype과 __proto__의 미묘한 관계를 이해하기엔 좋다.</div>
+</body>
+</html>

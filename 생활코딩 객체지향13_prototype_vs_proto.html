@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>객체나 객체생성자를 통해 생성되는 객체는 prototype이라는 속성을 꼭 갖고있다.</h2>
+    <h2>모든 prototype은 자신이 어디소속인지를 알려주는 constructor속성이 있다.</h2>
+    <script>
+        function ancientPerson(name){
+        }
+        ancientPerson.prototype.introduce = function(){
+            return '저는 '+this.age+'살, '+this.name+' 입니다.';
+        }
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype = new ancientPerson();
+        Person.prototype.inform = function(){
+            return this.name+','+this.age;
+        }; // Person객체생성자의 prototype에 inform이라는 메소드 추가
+        var p1 = new Person('지찬',25);
+        console.log(p1);
+        // var p1 = {
+        //     __proto__, -> 해당 객체를 생성한 Person객체생성자의 prototype을 뜻함
+        //     name : 지찬,
+        //     age : 25
+        // } 이런 객체 생성
+        console.log(Person.prototype);
+        console.log(p1.__proto__);
+
+        document.write('이름은 p1객체에 있음<br>'+p1.name+'<br>');
+        document.write('inform 메소드는 p1객체에 없기 때문에, __proto__객체에서 해당 메소드를 찾음<br>'+p1.inform()+'<br>');
+        document.write('inform 메소드는 p1객체도 없고, __proto__객체에도 없기 때문에, __proto__의 __proto__에서 해당 메소드를 찾음<br>'+p1.introduce()+'<br>');
+    </script>
+</body>
+</html>

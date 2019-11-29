@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        모든 함수는 call이라는 메소드를 갖고있다.<br>
+        call메소드를 통해, 해당 함수를 특정 객체의 메소드로 일시적으로 바꿀 수 있다.
+    </h2>
+    <div>함수.call(객체, 다른 인자...)</div>
+    <script>
+        var p1 = {
+            name : '태균',
+            age : 25
+        }
+        var p2 = {
+            name : '준성',
+            age : 25
+        }
+        function inform(prefix){
+            return prefix+('이름  '+this.name+' 나이  '+this.age);
+        }
+        inform.call(); // == inform();
+        document.write(inform.call(p1, '정보 : ')+'<br>');
+        document.write(inform.call(p2, '정보 : ')+'<br>');
+    </script>
+</body>
+</html>

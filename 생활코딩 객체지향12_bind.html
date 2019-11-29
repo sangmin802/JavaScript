@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>call = 특정 함수가 일시적으로 지정된 객체의 메소드로 바뀜(this에 영향)</h2>
+    <h2>bind = 특정 함수가 영구적으로 지정된 객체의 메소드로 바뀜(this에 영향)</h2>
+    <div>var 변수 = 함수.bind(객체, 인자들...)</div>
+    <div>기존의 함수에는 영향을 주지 않고, 지정한 객체를 영구적으로 this로 삼는 새로운 함수를 생성</div>
+    <script>
+        var p1 = {
+            name : '태균',
+            age : 25
+        }
+        var p2 = {
+            name : '준성',
+            age : 25
+        }
+        function inform(prefix){
+            return prefix+('이름  '+this.name+' 나이  '+this.age);
+        }
+        inform.call(); // == inform();
+        document.write(inform.call(p1, '정보 : ')+'<br>');
+        document.write(inform.call(p2, '정보 : ')+'<br>');
+        var p1Inform = inform.bind(p1, '나는 ');
+        document.write(p1Inform());
+    </script>    
+</body>
+</html>

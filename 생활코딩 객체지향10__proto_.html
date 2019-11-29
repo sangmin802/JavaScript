@@ -8,6 +8,9 @@
 </head>
 <body>
     <h2>prototype? __proto__?</h2>
+    <div>모든 객체는 __proto__라는 인자를 갖고 있으며, __proto__는 자신을 생성한 객체생성자의 prototype을 지칭한다.</div>
+    <div>객체생성자는 __proto__라는 속성이 없다.</div>
+    <div>prototype또한 어떻게보면 자신의 객체생성자의 객체이기때문에, __proto__가 존재한다.</div>
     <script>
         var superObj = {superValue : 'super'};
         var subObj = {subValue : 'sub'};

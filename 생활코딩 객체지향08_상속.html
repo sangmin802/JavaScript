@@ -39,6 +39,7 @@
                 this.name = name;
                 this.age = age;
             }
+            // prototype의 영역이다.
             inform(){
                 return '이름 : '+this.name+' 나이 : '+this.age;
             }
@@ -49,7 +50,7 @@
                 this.job = job;
             }
             inform(){
-                return super.inform(); // 부모인 Person2의 infomr메소드
+                return super.inform()+'입니다.'; // 부모인 Person2의 infomr메소드
             } // 근데 이거는 extends하면서 받아왔기 때문에, 안써도 되긴 하는듯
             introduce(){
                 return '제 이름은 '+this.name+'이고, 나이는 '+this.age+'살 입니다.<br> 직업은 '+this.job+' 입니다.'
