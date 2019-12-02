@@ -69,6 +69,9 @@
         friendPlus.prototype.introduce = function(){
             return '제 이름은 '+this.name+'이고, 나이는 '+this.age+'살 입니다.<br> 직업은 '+this.job+' 입니다.'
         }
+        // friendPlus.prototype.introduce = function(){
+        //     return `제 이름은 ${this.name} 이고, 나이는 ${this.age}살 입니다.<br> 직업은 ${this.job} 입니다.`
+        // }
         var p2 = new friendPlus('지찬', 25, 'BJ');
         console.log(p2.constructor)
         console.log(new friendPlus()) // 위에서 직접지정을 안해줬을 때, friend에서 constructor가 사라져있음.
