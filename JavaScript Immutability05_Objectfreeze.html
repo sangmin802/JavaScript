@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Object.freeze(객체)</h2>
+    <div>절대 풀 수 없음.</div>
+    <div>assign을 통한 복제 뿐</div>
+    <h4>정말 강력하지만, freeze가 적용된 객체는 속성을 추가할 수 없다.</h4>
+    <div>다만 이미 있는 속성에 값을 추가하거나 변경하는것은 가능하다.</div>
+    <div>이또한 막고 싶다면 Object.freeze(객체.속성)</div>
+    <script>
+        var o1 = {name:'kim', score:[1,2]};
+        Object.freeze(o1);
+        o1.name = 'lee';
+        o1.city = 'seoul';
+        console.log(o1); // kim
+    </script>
+</body>
+</html>

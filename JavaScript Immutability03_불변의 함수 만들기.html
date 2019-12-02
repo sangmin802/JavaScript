@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn(person){
+            person.name = 'lee';
+        }
+        var o1 = {name:'kim'};
+        fn(o1);
+        // 기존 o1을 바꾸는 함수가 됨.
+    </script>
+    <script>
+        // 1번방법
+        function fn(person){
+            person = Object.assign({}, person);
+            person.name = 'lee';
+            return person;
+        }
+        var o2 = {name:'kim'};
+        var o3 = fn(o2);
+        console.log(o2);
+        console.log(o3);
+        // 기존의 o2는 바뀌지 않고 새로 복사가 됨.
+
+        // 2번방법
+        function fn2(person){
+            person.name = 'lee';
+        }
+        var o4 = {name:'kim'};
+        var o5 = Object.assign({}, o4);
+        fn2(o5)
+        console.log(o2);
+        console.log(o3);
+    </script>
+</body>
+</html>

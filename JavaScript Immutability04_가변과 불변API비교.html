@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>복제를 할 때에 되도록 원본이 바뀌지 않도록 하자.</h2>
+    <div>물론 그것이 의도라면 폭발적이고 엄청난 효과</div>
+    <script>
+        var score = [1,2,3];
+        // score.push(4) // 원본변경
+        var score2 = score.concat(4);
+        console.log(score)
+        console.log(score2)
+    </script>
+</body>
+</html>

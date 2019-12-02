@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>const = key의 값을 바꾸지 못하도록 막는 것</h3>
+    <h3>freeze = key의 값인 객체 내에서의 변화를 못하도록 막는 것</h3>
+    <script>
+        const o1 = {name : 'kim'};
+        Object.freeze(o1);
+        const o2 = {name : 'kim'};
+        o1 = o2 // error;
+        o1.name = 'lee' // 변동x
+    </script>
+</body>
+</html>

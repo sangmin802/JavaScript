@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>immutability : 데이터의 원본이 훼손되거나 변하지 않는것</h2>
+    <h2>이름에 대한 불면함 : var vs const</h2>
+    <script>
+        var v = 1;
+        // 1억줄 코드
+        v = 2;
+        // 프로그램에서 1이아닌 2로 작동해서 문제가 생김
+        console.log(v);
+
+        const c = 1;
+         // 1억줄 코드
+         c = 2;
+         // 작동 자체가 안되고 console창에 error가 뜸
+         console.log(c);
+    </script>
+    <div>var : 해당 이름의 값이 바뀔 수 있음.</div>
+    <div>const : 해당 이름의 값이 바뀌었을 떄, 오류가 발생하고 스크립트의 작동이 중지됨.</div>
+</body>
+</html>
