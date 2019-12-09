@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>location객체 : 주소와 관련된 window의 객체이다.</h2>
+    <h2>현재의 url 알아내기 = location.href</h2>
+    <script>
+        document.write('현 페이지 주소 = '+location.href+'<br>');
+        document.write(`현 페이지 주소 = ${location.href}`)
+    </script>
+    <h2>주소를 조각내기</h2>
+    <script>
+        document.write(`location.protocol(http 또는 https) = ${location.protocol}<br>`);
+        document.write(`location.host(도메인 컴퓨터구분) = ${location.host}<br>`);
+        document.write(`location.port(:숫자 컴퓨터 내 어플구분) = ${location.port}<br>`);
+        document.write(`location.pathname(구체적인 주소) = ${location.pathname}<br>`);
+        document.write(`location.search(?뒤의 검색된 값) = ${location.search}<br>참고로 포폴할 때, location.href = 주소/+id; 보내고 location.search로 많이 받았었다.<br>`);
+        document.write(`location.hash(문서 내의 특정한 위치(북마크)) = ${location.hash}<br>`);
+    </script>
+    <h2>Url 변경하기, 새로고침</h2>
+    <span class="lostArk">로스트아크</span>
+    <script>
+        document.querySelector('.lostArk').addEventListener('click', Link)
+
+        function Link(){
+            location.href = 'https://lostark.game.onstove.com/Main';
+        }
+        // 새로고침
+        // location.reload();
+    </script>
+</body>
+</html>

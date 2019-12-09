@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>크로스 브라우징</h2>
+    <div>국제 표준기구인 W3C에 의해, 모든 브라우저들은 결과물을 비슷하게 출력하려 하지만, 세부적인 부분은 각자 다르게 구현된다.</div>
+    <h2>Navigator</h2>
+    <script>
+        console.dir(navigator);
+        document.write(`navigator.appName(브라우저 이름) = ${navigator.appName}<br>Ie = Internet Explorer라 뜨고, 그외, 크롬, 파이어폭스등은 Netescape라 뜬다.<br><br>`);
+        document.write(`navigator.appVersion(브라우저 버전) = ${navigator.appVersion}<br><br>`);
+        document.write(`navigator.userAgent(브라우저가 서버로 전송하는 요청내용) = ${navigator.userAgent}<br><br>`);
+        document.write(`navigator.platform(운영체제) = ${navigator.platform}<br><br>`);
+    </script>
+    <h2>기능테스트</h2>
+    <div>내가 사용한 함수(메소드)들이 호환되는지 확인하는 것</div>
+    <script>
+        // Object.keys는 ecma5 기능이다.
+        if(!Object.keys){ // Object.keys라는 메소드가 없다면 직접제작
+            Object.keys = (function(){
+                // ~~~
+            })
+        }else{ // 있다면 정상실행
+            // 기존의 Object.keys 실행
+        }
+    </script>
+</body>
+</html>

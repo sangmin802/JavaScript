@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>BOM = Browser Object Model 브라우저가 기본적으로 제공하는 객체모델</h2>
+    <script>
+        // 이런식의 구조
+        const Window = {
+            DOM : {
+                document,
+                etc
+            },
+            BOM : {
+                navigator,
+                screen,
+                location,
+                frames,
+                history,
+                etc
+            },
+            JavaScript : {
+                Object,
+                Array,
+                Function,
+                etc
+            }
+        }
+    </script>
+    <h2>전역객체 Window</h2>
+    <div>우리가 생성하는 함수나 변수들은 모두 전역객체 Window의 속성이다.</div>
+</body>
+</html>

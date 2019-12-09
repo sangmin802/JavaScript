@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>inline방식</h2>
+    <div>HTML 코드에 Script 코드가 같이 있다면, 유지보수가 힘들고 여러 문제가 발생할 수 있다.</div>
+    <input type="button" onclick="alert('Hello World')" value="Hello World">
+    <h2>script태그</h2>
+    <div>HTML코드와 Script 코드를 분리한 방식</div>
+    <input type="button" id="hw" value="Hello World">
+    <script>
+        var h2 = document.getElementById('hw');
+        h2.addEventListener('click', function(){
+            alert('Hello Wolrd');
+        })
+    </script>
+    <h2>script 파일 분리</h2>
+    <script> src="./script.js"</script>
+    <h2>Onload</h2>
+    <h2>script를 파일로 분리하여 head에 넣을 때, 위에서 아래로 코드를 읽는 특성상, 선택자들이 없는 상태에서 이벤트를 부여하기때문에 오류가 발생한다.</h2>
+    <h4>그래서 Jquery 할 때에, 첫 줄에 $(document).ready(function(){}) 이런식으로 해줬었음.</h4>
+    <h4>동일한 의미로 window.onload=function(){~~~}로 먼저 깔아줘야 한다.</h4>
+    <h4>아니면 body의 가장 아랫부분에 script를 연동시켜주거나</h4>
+</body>
+</html>
