@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>window.open()</h2>
+    <div>HTML에서 a 태그와 매우 흡사함.</div>
+    <ul>
+        <li><input type="button" onclick="open1()" value="이동">기본값</li>
+    </ul>
+    <ul>
+        <li><input type="button" onclick="open2()" value="이동, _self">기본창에 띄우기</li>
+    </ul>
+    <ul>
+        <li><input type="button" onclick="open3()" value="이동, _blank">새 창에 띄우기</li>
+    </ul>
+    <ul>
+        <li><input type="button" onclick="open4()" value="이동, ot">이미 띄워져 있는 창이 있다면, 그 창에 새로고침하기</li>
+    </ul>
+    <ul>
+        <li><input type="button" onclick="open5()" value="이동, 새창의 모양 설정">너비나 높이값등 설정하기. 하지만, 특정 팝업창을 보이지 않게 띄우는 등, 보안상 여러가지 문제가 생길 수 있기때문에 지양한다.</li>
+    </ul>
+    <script>
+        function open1(){
+            window.open('https://lostark.game.onstove.com/Main');
+        }
+        function open2(){
+            window.open('https://lostark.game.onstove.com/Main', '_self');
+        }
+        function open3(){
+            window.open('https://lostark.game.onstove.com/Main', '_blank');
+        }
+        function open4(){
+            window.open('https://lostark.game.onstove.com/Main', 'ot');
+        }
+        function open5(){
+            window.open('https://lostark.game.onstove.com/Main', '_blank', 'width = 200, height = 200, resizeable = no');
+        }
+    </script>
+    <h2>상호작용</h2>
+    <div>서버 연결을 통해, 기존 html에서 타이핑한 내용을 window.open된 페이지에 띄울 수 있다. 단! 같은 host여야만 가능</div>
+    <a href="https://www.youtube.com/watch?v=30PU5GYCb4A&list=PLuHgQVnccGMDTAQ0S_FYxXOi1ZJz4ikaX&index=19" target="_blank">생활코딩 YouTube</a>
+    <h2>보안</h2>
+    <div>윈도우 창이 실행되자마자 window.open으로 팝업이켜지는것은 윈도우에서 막지만, click등의 특정 이벤트로 사용자의 의지에 따라 팝업이 켜지는것은 막지 않는다.</div>
+</body>
+</html>

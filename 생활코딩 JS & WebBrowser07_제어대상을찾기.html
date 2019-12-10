@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>선택자를 통해 유사배열에 담는다.<br>말 그대로 유사배열이지 배열이 아니다. es의 map등을 쓰면 에러발생</h2>
+    <a href="https://www.zerocho.com/category/JavaScript/post/5af6f9e707d77a001bb579d2">배열과 유사배열 차이 + 유사배열에 map, filter등 적용시키기</a>
+    <h3>Array.from(유사배열).map(res => {...})</h3>
+    <h2>getElementsByTagName</h2>
+    <div>문서 전체의 태그가 선택되거나, index값을 찾아줘야해서 별로인것 같다.</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <ol>
+        <li class="All">HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+    <script>
+        var ul = document.getElementsByTagName('ul')[0];
+        var lis = ul.getElementsByTagName('li');
+        for(var i = 0; i < lis.length; i++){
+            lis[i].style.color="tomato";
+        }
+    </script>
+    <h2>getElementsByClassName</h2>
+    <ul>
+        <li>HTML</li>
+        <li class="active">CSS</li>
+        <li class="active">JavaScript</li>
+    </ul>
+    <script>
+        var lis = document.getElementsByClassName('active');
+        let arr = [];
+        for(var i = 0; i < lis.length; i++){
+            arr.push(lis[i])
+        }
+        arr.map(res => {
+            res.style.color="yellowgreen"
+        })
+    </script>
+    <h2>getElementById</h2>
+    <div>가장 직관적이고 좋긴하다만.. id의 특성을 고려해보면 이것만 사용할 순 없다.</div>
+    <ul>
+        <li class="All">HTML</li>
+        <li id="active">CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        var li = document.getElementById('active');
+        li.style.color="cornflowerblue";
+    </script>
+    <h2>querySelector</h2>
+    <div>가장 무난한 선택자</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <ul>
+        <li class="All">HTML</li>
+        <li class="selector">CSS</li>
+        <li class="All">JavaScript</li>
+    </ul>
+    <script>
+        var li1 = document.querySelector('li');
+        li1.style.color = "darkgreen"
+        var li2 = document.querySelector('.selector');
+        li2.style.color = "coral"
+        var lists = document.querySelectorAll('.All');
+
+        Array.from(lists).map(res => res.style.color ="gray")
+    </script>
+</body>
+</html>

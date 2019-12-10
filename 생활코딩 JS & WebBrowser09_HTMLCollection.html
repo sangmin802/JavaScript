@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>HTMLCollection : 선택자를 통해 리턴 결과가 복수인 경우. 유사배열과 비슷하지만 <strong>배열은 아니다</strong></div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active" class="JavaScript list">JavaScript</li>
+    </ul>
+    <script>
+        console.group('before');
+        var lis = document.getElementsByTagName('li');
+        for(var i = 0; i < lis.length; i++){
+            console.log(lis[i]);
+        }
+        console.groupEnd();
+        console.log(lis[1].parentNode.childNodes)
+        console.group('after');
+        lis[1].parentNode.removeChild(lis[1]);
+        for(var i = 0; i < lis.length; i++){
+            console.log(lis[i]);
+        }
+        console.groupEnd();
+        lis[1].classList.add('addList');
+        console.log(lis[1].classList)
+
+        Array.from(lis).map(res => res.style.color = "coral")
+    </script>
+</body>
+</html>

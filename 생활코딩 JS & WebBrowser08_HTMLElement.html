@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>선택자를 통해 획득한 유사배열들이 무엇인지 리턴값을 찾기</h2>
+    <h2>단수와 복수</h2>
+    <div>HTMLElement : 선택자를 통해 리턴된 값이 하나일 경우</div>
+    <div>HTMLCollection(객체이며, 유사배열이다) : 선택자를 통해 리턴된 값이 복수일 경우</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript</li>
+    </ul>
+    <script>
+        let li = document.getElementById('active');
+        document.write(`id가 active인 친구 : ${li.constructor.name}<br>`);
+        let lis = document.getElementsByTagName('li');
+        document.write(`모든 li태그 : ${lis.constructor.name}<br>`);
+    </script>
+    <h2>HTMLElement</h2>
+    <div>각각의 HTML???Element로 ???부분이 다 다른데, 각각의 태그들의 성격과 기본 속성들이 다르기 때문이다. 각각 다른 객체를 갖고 있어야 하기 때문!</div>
+    <ul>
+        <a id="anchor" href="https://lostark.game.onstove.com/Main" target="_blank">로스트아크</a>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="list">JavaScript</li>
+        <input type="button" id="button" value="버튼">
+    </ul>
+    <script>
+        var target = document.getElementById('list');
+        document.write(`${target.constructor.name}<br>`);
+        var target = document.getElementById('anchor');
+        document.write(`${target.constructor.name}<br>`);
+        var target = document.getElementById('button');
+        document.write(`${target.constructor.name}<br>`);
+    </script>
+    <h2>DOM Tree</h2>
+    <div>모든 Element는 HTMLElement의 자식이다(상속된다). 따라서, HTMLElement의 속성, 메소드들을 사용할 수 있다.</div>
+</body>
+</html>
