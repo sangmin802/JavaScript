@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>조회 API</h2>
+    <div>document.get... : 문서 전체에서 찾는 것</div>
+    <div>Element.get... : 특정 Element에서 찾는 것</div>
+    <ul>
+        <li class="marked">HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript
+            <ul>
+                <li>JavaScript Core</li>
+                <li class="marked">DOM</li>
+                <li class="marked">BOM</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var list = document.querySelectorAll('.marked');
+        for(var i = 0; i < list.length; i++){
+            document.write(`list[i].textContent = ${list[i].textContent}<br>`);
+        };
+        let active = document.querySelector('#active');
+        var list = active.querySelectorAll('.marked');
+        for(var i = 0; i < list.length; i++){
+            document.write(`#active의 list[i].textContent = ${list[i].textContent}<br>`);
+        };
+    </script>
+</body>
+</html>

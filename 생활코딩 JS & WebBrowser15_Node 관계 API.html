@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Node 관계 API</h2>
+    <div>하다보면 firstChild나 Node에 #text라는 아무것도 없는 Element가 나오는데, 이것은 띄어쓰기나 줄바꿈이 되었을 때 생성되니 크게 신경쓸 필요 없다.</div>
+    <div>유사배열의 text를 찾고자 할때에는 innerText지만, #text객체의 경우 textContent를 해야 한다</div>
+    <div id="start">
+        <ul>
+            <li><a href="./">HTML</a></li>
+            <li><a href="./">css</a></li>
+            <li><a href="./">JavaScript</a>
+                <ul>
+                    <li><a href="./">JavaScript Core</a></li>
+                    <li><a href="./">DOM</a></li>
+                    <li><a href="./">BOM</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let s = document.querySelector('#start');
+        console.log('#start의 첫번째 자손 = ',s.firstChild);
+        let ul = s.firstChild.nextSibling;
+        console.log('#start의 첫번째 자손의 다음형제 = ',ul);
+        console.log('#start의 첫번째 자손의 다음형제의 다음형제 = ',ul.nextSibling);
+        console.log('#start의 첫번째 자손의 다음형제의 다음형제의 다음형제 = ',ul.nextSibling.nextSibling);
+        console.log('#start의 첫번째 자손의 다음형제의 자손Node = ',ul.childNodes);
+        console.log('#start의 첫번째 자손의 다음형제의 자손Node의[1] = ',ul.childNodes[1]);
+        console.log('#start의 첫번째 자손의 다음형제의 부모Node = ',ul.parentNode);
+    </script>
+</body>
+</html>

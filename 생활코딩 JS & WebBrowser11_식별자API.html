@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>식별자 API</h2>
+    <div>HTML에서 Element의 이름, id, class는 식별자로 사용된다. 식별자 API는 이 식별자를 가져오고 변경하는 역할을 한다.</div>
+    <h2>tagName : 선택자로 선택한 태그의 이름을 정의해준다</h2>
+    <div>태그의 이름을 <strong>정의(읽기전용)</strong>해주는것만 가능하고, 변경은 불가능하다</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active" class="important current">JavaScript</li>
+    </ul>
+    <script>
+        document.write(`#active.tagName = ${document.getElementById('active').tagName}<br>`);
+    </script>
+    <h2>Element.id : 문서에서 단 한개만 존재할 수 있는 식별자</h2>
+    <div>id를 바꿀 수 있긴 한데, 스크립트에서는 이전id로 선택되어있기 때문에, 헷갈려서 안쓸듯</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="onlyOne">JavaScript</li>
+    </ul>
+    <script>
+        let onlyOne = document.getElementById('onlyOne');
+        document.write(`id = ${onlyOne.id}<br>`);
+        onlyOne.id = 'oneOnly';
+        document.write(`changed id = ${onlyOne.id}`);
+    </script>
+    <h2>Element.className</h2>
+    <div>태그에 class를 한번에 여러개 등록 가능하지만, 수정하거나 추가, 삭제 할 때에 다 써줘야 하므로 매우 불편하다.</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="className">JavaScript</li>
+    </ul>
+    <script>
+        let className = document.getElementById('className');
+        className.className = 'class1 class2 class3';
+        document.write(`className = ${document.getElementById('className').className}`);
+    </script>
+    <h2>Element.classList</h2>
+    <div>className의 불편함을 보완했다.</div>
+    <br>
+    <div>DOMTokenList : 특정 태그 선택자의 classList를 console로 찍었을 때, DOMTokenList라는 유사배열형태가 나온다. 해당 태그의 class리스트들도 있으며, __proto__에 부모객체의 메소드들도 상속받아져 있다.</div>
+    <br>
+    <div>선택자.classList[num] : num번째 class</div>
+    <div>선택자.classList.length : class의 갯수</div>
+    <div>선택자.classList.add('새 class') : class 추가</div>
+    <div>선택자.classList.remove('기존 class') : class 제거</div>
+    <div>선택자.classList.toggle('class') : 해당 class가 없으면 추가하고 있으면 제거하고</div>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="classList" class="marked current">JavaScript</li>
+    </ul>
+    <script>
+        let active = document.getElementById('classList');
+        document.write(`#active의 첫번째 class = ${active.classList[0]}<br>`);
+        document.write(`#active의 두번째 class = ${active.classList[1]}<br>`);
+    </script>
+</body>
+</html>

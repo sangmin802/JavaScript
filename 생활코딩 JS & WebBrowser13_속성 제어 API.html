@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>속성은 HTML에서 태그명만으로 부족한 부가적인 정보</h2>
+    <ul>
+        <li>선택자.getAttribute('속성명') : 해당 속성정보 갖고오기</li>
+        <li>선택자.setAttribute('속성명', '변경 내용') : 해당 속성정보 변경하기</li>
+        <li>선택자.removeAttribute('속성명') : 해당 속성 삭제</li>
+        <li>선택자.hasAttribute('속성명') : 해당 속성 존재 여부 파악</li>
+    </ul>
+    <a id="target" target ="_blank" href="https://lostark.game.onstove.com/Main" title="로스트아크">로스트아크</a><br>
+    <input id="btn" type="button" value="네이버로 번경"><br>
+    <script>
+        let t = document.querySelector('#target');
+        let btn = document.querySelector('#btn');
+        document.write(`주소 = ${t.getAttribute('href')}<br>`);
+        
+        btn.addEventListener('click', function(){
+            t.setAttribute('href', 'https://www.naver.com/');
+            t.textContent = "네이버";
+        })
+    </script>
+    <h2>속성과 프로퍼티</h2>
+    <div>HTML에서의 Element속성을 JavaScript를 통해 제어가 가능하다</div>
+    <ul>
+        <li>속성방식 : setAttribute등으로 제어하는 방식</li>
+        <li>프로퍼티 방식 : className, classList같은것들</li>
+    </ul>
+    <div>프로퍼티 방식이 좀 더 간편하고 빠르지만, JavaScript에서 이미 이름이 정해진 경우때문에 종종 HTML의 이름과 다른 경우가 있다.(class => className, rowspan => rowSpan)</div>
+</body>
+</html>

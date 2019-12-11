@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        .red {
+            color : tomato;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
-    
+    <h2>Element</h2>
+    <ul>
+        Element의 주요 기능
+        <li class="parent">
+            식별자 : 문서 내에서 특정한 Element를 식별하기 위한 용도로 사용되는 API
+            <ul>
+                <li class="sub">Element.classList</li>
+                <li class="sub">Element.className</li>
+                <li class="sub">Element.id</li>
+                <li class="sub">Element.tagName</li>
+            </ul>
+        </li>
+        <li class="parent">
+            조회 : Element의 하위 Element를 조회하는 API
+            <ul>
+                <li class="sub">Element.getElementsByClassName</li>
+                <li class="sub">Element.getElementsByTagName</li>
+                <li class="sub">Element.querySelector</li>
+                <li class="sub">Element.querySelectorAll</li>
+            </ul>
+        </li>
+        <li class="parent">
+            속성 : Element의 속성을 알아내고 변경하는 API
+            <ul>
+                <li class="sub">Element.getAttribute(name)</li>
+                <li class="sub">Element.setAttribute(name, value)</li>
+                <li class="sub">Element.hasAttribute(name)</li>
+                <li class="sub">Element.removeAttribute(name)</li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript</li>
+    </ul>
+    <script>
+        $(document).ready(function(){
+            $(document).on('click', '.sub', function(){
+                let parentIndex = $(this).parent().parent().index();
+                let subIndex = $(this).index();
+                $('li').css('color', 'black');
+                $('.parent').eq(parentIndex).children().children().eq(subIndex).css('color', 'tomato');
+            })
+        })
+    </script>
 </body>
 </html>
