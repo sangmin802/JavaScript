@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>음.. nodeName과 nodeType을 사용해서 class명을 일일이 주기 귀찮은데 특정 Element만 주고싶을 때 스타일이나 이벤트를 줄 수 있다.</h2>
+    <div id="start">
+        <h2>재귀함수 : A함수 안에서 A함수를 다시 호출하는 것. 최 상위에서 최 하위. 모든 대상에게 Script를 적용시킬 수 있다.</h2>
+        <ul>
+            <li><a href="">HTML</a></li>
+            <li><a href="">CSS</a></li>
+            <li><a href="">JavaScript</a>
+                <ul>
+                    <li><a href="">JavaScript Core</a></li>
+                    <li><a href="">BOM</a></li>
+                    <li><a href="">DOM</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function traverse(target, callback){
+            if(target.nodeType === 1){ // Node에는 text도 담기게 되어있는데, Element Type들만 적용되게 === if(target.nodeType === Node.ELEMENT_NODE)
+                if(target.nodeName === 'A'){
+                    console.log(target) 
+                }
+                callback(target); // div 태그먼저 적용
+                let c = target.childNodes;
+                for(var i = 0; i < c.length; i++){
+                    traverse(c[i], callback);
+                }
+                
+            }
+        }
+        traverse(document.querySelector('#start'), function(elem){
+            elem.style.color="coral";
+        });
+        // childnode가 없을때 까지 for문이 돌아감 우
+    </script>
+</body>
+</html>

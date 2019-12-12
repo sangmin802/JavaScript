@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Node의 추가, 변경</h2>
+    <h3>Element를 생성하는 것은, Node가 아닌 document객체에서 수행한다</h3>
+    <ul>
+        순서-매우중요!!
+        <li>Node를 추가할 Element나 textNode를 먼저 생성한다 <br>(document.createElement(태그이름) or document.createTextNode(data))</li>
+        <li>생성된 Element에 Node(textNode or ElementNode)들을 추가한다 <br>(appendChild() or insertBefore(추가될 Element, 기준이 될 Element))</li>
+    </ul>
+    <ul id="target">
+        <li>HTML</li>
+        <li>CSS</li>
+    </ul>
+    <input type="button" onclick="AppendChild()" value="appendChild">
+    <input type="button" onclick="InsertBefore()" value="insertBefore">
+    <script>
+        function AppendChild(){
+            let target = document.querySelector('#target');
+            let li = document.createElement('li'); // 이거 절대로 전역변수 하면 안됨. 얘는 그냥 li라는 li태그 하나생성됀거임  
+            let JavaScript = document.createTextNode('JavaScript');
+            // console.log(li.nodeName)
+            // console.log(JavaScript.nodeName)
+            target.appendChild(li);
+            li.classList.add('Javascript')
+            console.log(target.childNodes) // target의 text들과 내부 Element들 (내부 Element의 text들은 관심없음)
+            console.log(li.childNodes); // target의 내부 Element의 text들과 Element들
+
+            li.appendChild(JavaScript);
+            // li.innerHTML='JavaScript' // 같은 결과이긴 함.
+            
+            // Array.from(target.childNodes).map(res => {
+            //     console.log(res.nodeName);
+            //     if(res.nodeType === Node.ELEMENT_NODE){
+            //         console.log(res.textContent);
+            //     }
+            // })
+        }
+
+        function InsertBefore(){
+            let target = document.querySelector('#target');
+            let li = document.createElement('li');
+            let React = document.createTextNode('React');
+            target.insertBefore(li, target.childNodes[3]);
+            li.appendChild(React);
+        }
+    </script>
+    <h2>Node 삭제, 교체</h2>
+    <ul id="parent">
+        <li>HTML</li>
+        <li id="CSS">CSS</li>
+        <li id="JavaScript">JavaScript</li>
+    </ul>
+    <input type="button" onclick="remove()" value="removeChild">
+    <input type="button" onclick="replace()" value="replaceChild">
+    <script>
+        function remove(){
+            let JavaScript = document.querySelector('#JavaScript');
+            JavaScript.parentNode.removeChild(JavaScript);
+        }
+        function replace(){
+            let target = document.querySelector('#parent');
+            let oldCSS = document.querySelector('#CSS');
+            let newCSS = document.createElement('a');
+            newCSS.setAttribute('href', '#');
+            newCSS.appendChild(document.createTextNode('CSS Link'));
+            target.replaceChild(newCSS,oldCSS);
+        }
+    </script>
+    <h2>innerHTML과 ~~Child(Node방식)의 차이 느낀점</h2>
+    <div>전체를 싹 갈꺼냐? 부분적으로 수정만 할꺼냐?</div>
+    <div>만들어야 할 Node가 많다면 innerHTML!</div>
+    <div>만들어야 할 Node가 적다면 appendChild!</div>
+</body>
+</html>

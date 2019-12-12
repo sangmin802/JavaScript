@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id="start">
+    <ul>
+        <li><a href="">HTML</a></li>
+        <li><a href="">CSS</a></li>
+        <li><a href="">JavaScript</a>
+            <ul>
+                <li><a href="">JavaScript Core</a></li>
+                <li><a href="">BOM</a></li>
+                <li><a href="">DOM</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2>??.nodeType = ?? 타입</h2>
+    <h2>??.nodeName = ?? Element의 이름</h2>
+    <script>
+        let body = document.querySelector('#start');
+        for(var name in Node){
+            document.write(`${name} = ${Node[name]}<br>`);
+        }
+        console.log(body.nodeType); // 1
+        console.log(body.firstChild); // #text
+        console.log(body.firstChild.nodeType); // 3
+        console.log(document.nodeType); // 9
+
+        console.log(body.nodeName); // BODY
+        console.log(body.firstChild.nodeName); // #text
+        console.log(body.firstChild.nextSibling.nodeName); // UL
+    </script>
+</body>
+</html>
