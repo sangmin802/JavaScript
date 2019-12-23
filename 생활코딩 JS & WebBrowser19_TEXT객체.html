@@ -7,6 +7,89 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h2>Text객체(TEXT_NODE) : Element 노드 안에 있는 글씨들</h2>
+    <p id="target1"><span>Hello World</span></p>
+    <p id="target2">
+        <span>Hello World</span>
+    </p>
+    <h3>t1은 태그와 태그사이에 공백이나 줄바꿈이 없다.</h3>
+    <h3>t2은 태그와 태그사이에 공백이나 줄바꿈이 있다.</h3>
+    <div>t1 = span태그</div>
+    <div>t1.firstChild = span태그의 Text</div>
+    <div>t1 = P태그 다음의 공백</div>
+    <div>t1.nextSibling = span태그</div>
+    <script>
+        let t1 = document.querySelector('#target1').firstChild;
+        let t2 = document.querySelector('#target2').firstChild;
+        console.log(t1.firstChild.nodeValue);
+        console.log(t2.nextSibling);
+        try{
+            console.log(t2.firstChild.nodeValue);
+        }catch(e){
+            console.log(e);
+        }
+        console.log(t2.nextSibling.firstChild.nodeValue);
+    </script>
+    <h2>값API : TEXT_NODE는 DOM에서 실질적인 데이터가 저장되는 객체이다. 따라서 TEXT_NODE에는 값과 관련된 여러 기능들이 있다</h2>
+    <h3>해당 TEXT_NODE의 글씨를 갖고옴.</h3>
+    <ul>
+        <li>nodeValue</li>
+        <li>data</li>
+    </ul>
+    <ul>
+        <li id="target">HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        var t = document.querySelector('#target').firstChild;
+        console.log(t);
+        document.write(`t.nodeValue = ${t.nodeValue}<br>`);
+        document.write(`t.data = ${t.data}`);
+    </script>
+    <h2>조작API : TEXT_NODE가 상속받은 CharacterData 객체는 문자를 제어할 수 있는 다양한 API를 제공한다.</h2>
+    <ul>
+        <li>appendData()</li>
+        <li>deleteData()</li>
+        <li>insertData()</li>
+        <li>replaceData()</li>
+        <li>substringData() : 일부의 정보를 가공하는 API</li>
+    </ul>
+    <p id="target3">Coding Evertbody!</p>
+    <p> data : <input type="text" id="datasource" value="JavaScript"></p>
+    <p> start : <input type="text" id="start" value="5"></p>
+    <p> end : <input type="text" id="end" value="5"></p>
+    <input type="button" value="AppendData(data)" onclick="callAppendData()">
+    <input type="button" value="DeleteData(start, end)" onclick="callDeleteData()">
+    <input type="button" value="InsertData(start, data)" onclick="callInsertData()">
+    <input type="button" value="ReplaceData(start, end, data)" onclick="callReplaceData()">
+    <input type="button" value="SubstringData(start, end)" onclick="callSubstringData()">
+    <script>
+        let target = document.querySelector('#target3').firstChild;
+        let data = document.querySelector('#datasource');
+        let start = document.querySelector('#start');
+        let end = document.querySelector('#end');
+
+        function callAppendData(){
+            target.appendData(data.value);
+            console.log(target);
+        }
+        function callDeleteData(){
+            target.deleteData(start.value, end.value);
+            console.log(target);
+        }
+        function callInsertData(){
+            target.insertData(start.value, data.value);
+            console.log(target);
+        }
+        function callReplaceData(){
+            target.replaceData(start.value, end.value, data.value);
+            console.log(target);
+        }
+        function callSubstringData(){
+            alert(target.substringData(start.value, end.value));
+        }
+    </script>
+    <h3>근데.. 이거 쓸 일 없을듯..</h3>
 </body>
 </html>

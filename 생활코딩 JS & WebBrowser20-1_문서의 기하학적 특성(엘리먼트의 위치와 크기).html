@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin : 0;
+            padding : 0;
+        }
+        div {
+            border : 50px solid #1065e6;
+            padding : 50px;
+            margin : 50px;
+        }
+        #target {
+            width : 100px;
+            height : 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="target">
+            Coding
+        </div>
+    </div>
+    <h2>Element의 위치와 크기 : getBoundingClientRect() (테두리 포함)</h2>
+    <h2>Element의 위치와 크기 : clientWidth, clientHeight (테두리 미포함)</h2>
+    <p>사이에 어떤 태그가 있던, 거리는 절대값으로 측정된다</p>
+    <p>단 IE의 경우 width, height값을 제공하지 않는다</p>
+    <p>추가설명 <a href="https://webclub.tistory.com/104">이동</a></p>
+    <script>
+        let t = document.querySelector('#target');
+        console.log(t.getBoundingClientRect());
+        console.log(t.offsetParent); // 측정의 기준이 되는 태그
+        // console.log(getComputedStyle(t)); // 스타일
+        console.log(t.clientWidth);
+        console.log(t.clientHeight);
+        window.addEventListener('scroll', function(){
+            // console.log(window.scrollY);
+            // console.log(t.offsetTop);
+        })
+    </script>
+</body>
+</html>

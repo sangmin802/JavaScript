@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin : 0;
+            padding : 0;
+        }
+        div {
+            border : 50px solid #1065e6;
+            padding : 50px;
+            margin : 50px;
+        }
+        #target {
+            width : 100px;
+            height : 2000px;
+        }
+    </style>
+</head>
+<body>
+    <h2>뷰포트 : 브라우저가 사용자에게 보여주는 창의 영역크기</h2>
+    <h3>스크롤바가 생기게되면 위치의 값이 달라지기 때문에 뷰포트에대한 이해가 필요하다.</h3>
+    <p>getBoundingClientRect의 높이값은 body가 아닌 브라우저의 높이값을 기준으로 하기 때문에, 스크롤 할 때마다 바뀐다.</p>
+    <p>그래서 body를 기준으로 하고 싶다면, getBoundingClientRect의().top과 pageYOffset값을 합하면 된다.</p>
+    <p class="text"></p>
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <div id="target">
+                        Coding
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script>
+        let t = document.querySelector('#target');
+        let text = document.querySelector('.text');
+        setInterval(() => {
+            text.textContent=`getBoundingClientRect().top = ${t.getBoundingClientRect().top} pageYOffset = ${window.pageYOffset}`;
+        }, 1000);
+    </script>
+</body>
+</html>

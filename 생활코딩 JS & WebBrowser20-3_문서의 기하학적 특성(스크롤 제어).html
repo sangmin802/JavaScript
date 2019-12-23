@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            padding : 0;
+            margin : 0;
+        }
+        .section {
+            width : calc(100%-100px-0.01px);
+            height : 2000px;
+        }
+        div {
+            border : 50px solid #1065e6;
+            padding : 50px;
+            margin : 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>scrollTo() : 강제이동</h2>
+    <input type="button" value="section2" class="btn">
+    <div>
+        <div id="section1" class="section">section1</div>
+        <div id="section2" class="section">section2</div>
+    </div>
+    <script>
+        let btn = document.querySelector('.btn');
+        let section2 = document.querySelector('#section2');
+        btn.addEventListener('click', function(){
+            window.scrollTo(0, section2.getBoundingClientRect().top+window.pageYOffset);
+        })
+    </script>
+</body>
+</html>
