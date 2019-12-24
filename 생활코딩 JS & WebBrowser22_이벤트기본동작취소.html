@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>기본이벤트 취소시키기</h2>
+    <h4>특정 조건시 return false</h4>
+    <h4>특정 조건시 event.preventDefault()</h4>
+    <p>
+        <label>prevent event on</label>
+        <input type="checkbox" id="prevent" name="eventprevent" value="on">
+    </p>
+    <p>
+        <a href="https://www.naver.com/" onclick="if(document.getElementById('prevent').checkd) return false">네이버</a>
+    </p>
+    <p>
+        <form action="https://www.naver.com/" onsubmit="if(document.getElementById('prevent').checkd) return false;">
+            <input type="submit">
+        </form>
+    </p>
+    <script>
+    </script>
+</body>
+</html>

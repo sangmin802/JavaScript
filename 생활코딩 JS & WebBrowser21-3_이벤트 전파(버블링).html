@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {border : 5xp solid red; padding : 30px;}
+        body {border : 5px solid green; padding : 30px;}
+        fieldset {border : 5px solid blue; padding : 30px;}
+        input {border : 5px solid black; padding : 30px;}
+    </style>
+</head>
+<body>
+    <h3>console을 찍어보면, 캡처링과 다르게 최 하위부터 호출됨</h3>
+    <fieldset>
+        <legend>event propagation</legend>
+        <input type="button" id="target" value="target">
+    </fieldset>
+    <script>
+        function handler(event){
+            var phases = ['capturing', 'target', 'bublling'];
+            // console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+            console.log(`직접 누른 태그 : ${event.target.nodeName}`)
+            console.log(`이벤트가 실행된 태그 : ${this.nodeName}`)
+            console.log(`이벤트가 전달되는 흐름 : ${phases[event.eventPhase-1]}`)
+        }
+        function stopHandler(event){
+            var phases = ['capturing', 'target', 'bublling'];
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+            event.stopPropagation(); // 해당 이벤트를 실행시킨 태그까지만 이벤트를 전파
+        }
+        document.querySelector('#target').addEventListener('click', handler, false);
+        document.querySelector('fieldset').addEventListener('click', handler, false);
+        document.querySelector('body').addEventListener('click', stopHandler, false);
+        document.querySelector('html').addEventListener('click', handler, false);
+    </script>
+</body>
+</html>

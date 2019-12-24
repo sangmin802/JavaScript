@@ -32,7 +32,10 @@
         let btn = document.querySelector('.btn');
         let section2 = document.querySelector('#section2');
         btn.addEventListener('click', function(){
-            window.scrollTo(0, section2.getBoundingClientRect().top+window.pageYOffset);
+            window.scrollTo({
+                top : section2.getBoundingClientRect().top+window.pageYOffset,
+                behavior : 'smooth'
+            });
         })
     </script>
 </body>

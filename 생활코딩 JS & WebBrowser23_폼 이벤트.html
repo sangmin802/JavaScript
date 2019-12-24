@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="target">
+    <!-- <form action="https://www.naver.com/"> -->
+        <label for="name">name</label>
+        <input type="text" name="name" id="name">
+        <input type="submit">
+    </form>
+    <script>
+        let t = document.querySelector('#target');
+        t.addEventListener('submit', function(event){
+            if(document.getElementById('name').value.length === 0){
+                alert('안썼습니다.');
+                return false;
+                event.preventDefault();
+            }
+        })
+        t.addEventListener('change', function(event){
+            console.log(event.isTrusted)
+        })
+    </script>
+</body>
+</html>
