@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.addEventListener('load', () => {
+            let t = document.querySelector('#target');
+            console.log(t)
+        })
+    </script>
+</head>
+<body>
+    <h2>위에서부터 아래로 코드를 읽는 브라우저의 특성 상, header에 script가 있는 경우, element를 읽지 못한다.</h2>
+    <h4>script를 body의 최 하단에 적는다</h4>
+    <h4>window의 onload이벤트 : 이미지를 포함한 모든 element가 준비될때까지 script의 기능이 지연된다.</h4>
+    <h4>window DOMContentLoaded이벤트 : 이미지등을 제외한 DOM Element가 준비되면 script가 실행된다.</h4>
+    <div>근데 크게 신경쓸 필요 없다..</div>
+    <p id="target">Hello</p>
+</body>
+</html>
