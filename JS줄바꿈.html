@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>줄바꿈 : \n</h2>
+    <div>저거 역슬래시임</div>
+    <div>근데 문서내에서 출력되게할 때에는 안먹히더라</div>
+    <script>
+        document.write('Legosi<br>Haru');
+        var p = document.createElement('p');
+        var Javascript = document.createTextNode('Legosi\nHaru');
+        p.appendChild(Javascript);
+        document.querySelector('body').appendChild(p);
+        console.log('Legosi\nHaru')
+    </script>
+</body>
+</html>
