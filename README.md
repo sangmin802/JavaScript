@@ -1,3 +1,3 @@
-2019-11-21<br>
-flyer전단구현할 때에, for문이 두개가 겹치면서, 10개중 5번째가 true여도, 이후 6,7,8.. 이 flase일 경우 false의 값도 받아졌었다.<br>
-해결 : for문으로 ture에 해당되는 조건을 찾을 시 return을 해주고, false일 경우 for문안에 쓰는것이 아닌, for문 종료 후 return false를 해주면 된다.<br>
+2020-02-19<br>
+position absolute를 갖고있는 부모의 높이를 구하지 못해, 내용이 보이지 않을 때!<br>
+padding은 상위컨텐츠의 width를 기준으로 설정되기 때문에, padding-bottom : ?%를 통해 다른방법으로 높이값을 줄 수 있다.<br>
