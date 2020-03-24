@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li data-action="HTML">HTML</li>
+    <li data-action="CSS">CSS</li>
+    <li data-action="JavaScript">JavaScript</li>
+    <li data-action="ECMA Script">ECMA Script</li>
+  </ul>
+
+  <script>
+    // var ul = document.querySelector('ul');
+    // ul.addEventListener('click', (e) => {
+    //   const data = e.target.dataset.action;
+    //   console.log(`${data}리스트 입니다.`)
+    // })
+
+    var list = document.querySelectorAll('li');
+    for(var i=0; i<list.length; i++){
+      list[i].addEventListener('click', function(){
+        console.log(`${i}번째 리스트 입니다.`);
+      })
+    }
+    // var i로 할 경우, 모두 4번째 리스트라고 나온다.
+    // -> for문 함수 안, 콜백함수인 console.log의 i는 외부함수의 i로서, 클로저 역할을 한다. 따라서 i를 기억할 수 있다. 그런데 var는 특성상 이전의 값에다 덮어씌워지기때문에(참조) 가장 마지막인 4가남지만, let은 그렇지 않기 때문에 let i를 할 경우 정상출력된다.
+  </script>
+</body>
+</html>

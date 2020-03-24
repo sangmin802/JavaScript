@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let
+    // 기존
+    var name ='global var';
+    function home(){
+      var homevar = 'homevar';
+      for(var i=0; i<100; i++){
+      }
+      console.log(i)
+      // var의 경우, for 안의 스코프에서만 선언된 i더라도, 함수단위로 인식되기 때문에 i가 찍힌다.
+      // 하지만 i를 let으로 선언했을 때, for문 안에서만 i를 인식할 수 있다.
+    }
+    home();
+    // 그 외, let은 두번 선언될 수 없다는 점이 var와의 차이
+  </script>
+</body>
+</html>
