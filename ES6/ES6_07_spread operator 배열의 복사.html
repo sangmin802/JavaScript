@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // spread operator 펼침 연산자.
+    // redux로 기존 state 복사할 때 사용했던 것. 객체도 가능
+    let pre = ['apple', 'orange', 100];
+    let newData = [...pre];
+    console.log(pre, newData);
+
+    let arr = [100,200,'hello',null];
+    let newArr = [0,1,2,3, ...arr ,4];
+    console.log(arr, newArr);
+
+    let test = [100,200,300];
+    function sum(a,b,c,d){
+      console.log(a,b,c,d)
+      return a+b+c;
+    }
+    console.log(sum(...test)) // 알아서 풀어라.
+  </script>
+</body>
+</html>

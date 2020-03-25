@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // data 순회하기
+    let data = [1,2,undefined,NaN,null,'ㅋ'];
+    Array.prototype.getIndex = () => {}
+
+    // 1. forEach 등등.. map도 가능
+    data.forEach(res => {
+      console.log(res);
+    })
+
+    // 2. for in 매우비추천
+    for(let i in data){
+      console.log(data[i]);
+    }
+    // 하지만 for in의 경우, 개발자가 임의로 Array.prototype을 통해 공용 메소드를 만들었다면, 그 메소드또한 console로 찍혀나온다.
+    // 즉, 상위에서 생성된 값 또한 순회됨.
+
+    // 3. for of
+    for(let a of data){
+      console.log(a);
+    }
+    // for in의 대체제로, 자신이 갖고있는 값들만 순회시키는데다, 출력할 때, index조회 필요 없이 그냥 순서대로 출력시킴
+
+    // for of는 배열전용이 아닌 일반 문자열또한 순회가능하다.
+  </script>
+</body>
+</html>

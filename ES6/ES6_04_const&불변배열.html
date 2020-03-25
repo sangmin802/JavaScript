@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function home(){
+      const list = ['apple', 'orange', 'watermelon'];
+      list.push('banana');
+      console.log(list);
+      // const는 재선언은 불가능하지만, 배열이나 객체로 선언된 값을 변경하는 것은 가능하다.
+    };
+    // home();
+
+    // 불변성
+    const list = ['apple', 'orange', 'watermelon'];
+    // list2 = [].concat(list, 'banana');
+    list2 = list.concat('banana');
+    console.log(list, list2);
+  </script>
+</body>
+</html>
