@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 인자의 갯수가 수시로 바뀌는 함수의 경우, 모든 변수를 지정해주는것이 불가능하기 때문에, arguments를 통해 별도의 변수 필요 없이 배열화 할 수 있다.
+    function addMark(){
+      let newData = [];
+      newData = Array.from(arguments).map(res => {
+        return res+'!';
+      })
+      console.log(newData)
+    }
+    addMark(1,2,3,4,5);
+  </script>
+</body>
+</html>

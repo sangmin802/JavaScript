@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>apple</li>
+    <li>orrange</li>
+    <li>banana</li>
+    <li>strawberry</li>
+  </ul>
+  <script>
+    // 문자열 'e'가 포함된 배열을 만들어서 반환하라.
+    function print(){
+      let arr = [];
+      const li = document.querySelectorAll('li');
+      Array.from(li).filter(res => {
+        const text = res.textContent;
+        if(text.includes('e')){
+          arr.push(text);
+        }
+      })
+      console.log(arr);
+    };
+    print();
+  </script>
+</body>
+</html>

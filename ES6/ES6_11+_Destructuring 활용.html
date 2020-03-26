@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    Fuck you
+  </div>
+  <script>
+    let json = [
+      {
+        "title" : "sbs",
+        "imgurl" : 'http://static.naver.net/newsstand/2017/0313/article_img/9054/173200/001.jpg',
+        "newslist" : [
+          "[가보니] 가상 경주도 즐기고, 내 손으로 자동차도 만들고",
+          "리캡차가 사라진다",
+          "갤럭시S8 출시? 갤노트7 처리 계획부터 밝혀야",
+          "블로코-삼성SDS, 블로겣인 사업 맞손",
+          "[블록체인 돌아보기] 퍼블릭 블록체인의 한계와 프라이빗 블록체인",
+        ]
+      },
+      {
+        "title" : "LostArk",
+        "imgurl" : 'http://static.naver.net/newsstand/2017/0313/article_img/9033/220451/001.jpg',
+        "newslist" : [
+          "바드 사숔낙인 유지시간 6초로 제발 변경좀",
+          "안타레스, 업화 토큰경매방식 개편부탁",
+          "카던3회 -> 1회 3배보상 변경",
+          "모코코아바타 동일 직업내 이동가능 개편",
+        ]
+      }
+    ];
+
+    // JSON 파싱
+    // let[sbs,mbc] = json;
+    // let {title, imgurl} = mbc;
+    // console.log(title,imgurl)
+    let[, {title, imgurl}] = json;
+    console.log(title,imgurl);
+
+    function getNewsList([, {newslist}]){
+      console.log(newslist);
+    }
+    getNewsList(json);
+
+    // Event 객체 전달.
+    document.querySelector('div').addEventListener('click', ({target : {nodeName}}) => {
+      console.log(nodeName)
+    });
+  </script>
+</body>
+</html>

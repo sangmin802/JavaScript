@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 객체 내에서 메소드를 정의할 때에는 arrow function을 사용하면 안된다.
+    // 위의 방법을 사용하면, this가 객체를 지칭하는것이 아닌, 전역객체인 window를 지칭하게 된다.
+    // arrow function은 일반 메소드형식에서는 사용하면 안된다고한다!
+    function setUser(){
+      const name = '입력되지 않았습니다.';
+      const getName = function(){
+        return name;
+      };
+      const setName = function(newName){
+        this.name = newName;
+      }
+      return {name, nation : 'Korea', getName, setName};
+    }
+    const user = setUser();
+    user.setName('정지찬');
+    console.log(user)
+  </script>
+</body>
+</html>
