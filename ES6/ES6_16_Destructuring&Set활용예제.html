@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const Setting = {
+      name : 'LUCKY LOTTO!',
+      count : 6,
+      maxNumber : 45
+    }
+
+    function getRandomNumber({maxNumber, count}){
+      let arr = new Set();
+      for(let i=0; arr.size<count; i++){
+        const number = Math.floor(Math.random()*maxNumber);
+        arr.add(number);
+      };
+      console.log(arr);
+    }
+    getRandomNumber(Setting);
+  </script>
+</body>
+</html>

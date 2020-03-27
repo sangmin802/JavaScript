@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const wm = new WeakMap();
+    function Area(height, width){
+      wm.set(this, {height, width});
+    }
+    console.log(wm);
+    Area.prototype.getArea = function(){
+      const {height, width} = wm.get(this);
+      return height*width;
+    }
+    let myarea = new Area(10,20);
+    console.log(myarea.getArea());
+  </script>
+</body>
+</html>
