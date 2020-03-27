@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // WeakSet : 참조를 가지고 있는 객체만 저장가능하다.
+    // 기본타입인 문자열, 숫자열, null, undefined, boolean을 제외한 모든것
+
+    // 객체타입을 중복없이 저장하고자 할 때 유용하다.
+
+    let arr = [1,2,3,4];
+    let arr2 = [5,6,7,8];
+    let arr3 = [1,2,3,4];
+    let obj = {arr, arr2};
+    let ws = new WeakSet();
+    ws.add(arr);
+    ws.add(arr2);
+    ws.add(obj);
+    arr = null;
+    ws.delete(arr2)
+    // ws.add(111); // invalid type
+    // ws.add('111'); // invalid type
+    // ws.add(null); // invalid type
+    ws.add(function(){});
+
+    console.log(ws)
+    console.log(ws.has(arr));
+
+    // WeakSet은 참조타입이였는데 기본타입이 되었다면 그 값을 없애버린다.
+    // console에는 있는것처럼 보이지만, 갖고있는지 has 여부를 물어보면 false가 나옴
+  </script>
+</body>
+</html>

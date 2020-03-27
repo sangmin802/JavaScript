@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Set : 중복없이 유일한 값을 저장하고자 할 때. 이미 존재하는지 체크할 때 유용하다.
+    let mySet = new Set();
+    const arr = [1,1,2,3,4];
+    console.log(Array.from(new Set(arr)));
+    mySet.add('crong');
+    mySet.add('harry');
+    mySet.add('crong');
+
+    console.log(mySet.has('crong'));
+
+    mySet.delete('crong');
+    
+    console.log(mySet.has('crong'));
+  </script>
+</body>
+</html>
