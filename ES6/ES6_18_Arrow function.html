@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Arrow function
+    // 콜백함수의 경우 아래처럼 함수안에 function을 다시쓰는것은 너무나도 귀찮음. 따라서, 콜백함수의 경우 ()=>로 축약
+    // setTimeout(function(){
+    //   console.log('fuckyou')
+    // }, 1000)
+    // setInterval(fuckyou, 1000);
+    setTimeout(() => {
+      console.log('fuckyou')
+    }, 1000)
+
+
+    fuckyou();
+    function fuckyou(){
+      console.log('fuckyou infinity');
+    };
+
+    let newArr = [1,2,3,4,5].map((res, index, object) => {
+      return res*2;
+    })
+    console.log(newArr)
+  </script>
+</body>
+</html>

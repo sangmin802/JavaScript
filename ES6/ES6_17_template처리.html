@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Template Literals : `안녕 ${data.hi}`;
+
+    // Tagged Template Literals
+    // 태그가 포함된 템플릿 리터럴을 함수로 파싱(분석)할 수 있습니다.
+    //  ex) 함수이름`~~~~` 괄호로 감싸지 않음.
+    // 첫번째 인자 : 문자열값들의 배열
+    // 이후 인자 : 그 외 순서대로
+
+    // 바닐라자바스크립트의 경우 자바스크립트로 template을 생성해서 DOM을 구성할 때 변수에 따라 달라지는 값들을 이렇게 표현할 수 있다.
+    // React 등 대부분 라이브러리는 이 기능을 기본적으로 제공하고 있다.
+    const data = [
+      {
+        name : 'Coffee-Bean',
+        order : true,
+        items : ['americano', 'milk', 'green-tea']
+      },
+      {
+        name : 'STARBUCKS',
+        order : false,
+      }
+    ]
+
+    function fn(tags, name, items){
+      if(items === undefined){
+        items = '주문가능한 상품이 없습니다.';
+      }
+      return tags[0]+name+tags[1]+items+tags[2];
+    };
+    
+    data.forEach(res => {
+      const template = fn`<div>welcome ${res.name}!</div><h2>주문가능항목</h2><div>${res.items}</div><br><br>`;
+      document.querySelector('body').innerHTML += template;
+    })
+  </script>
+</body>
+</html>
