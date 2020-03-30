@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1. 객체내에서 메소드를 정의할 때 arrow function을 사용하면 this가 window를 지칭한다.
+    //    -> 애초에, 콜백함수용도가 아니라면 arrow function은 사용하지 않는것이 좋다.
+    // 2. 콜백함수로 일반함수를 사용했을 때, 객체 내부더라도 window를 지칭한다. 이럴경우, ES5버전에서는 .bind(this)를 통해 해결했지만, ES6이후, Arrow function을 통해 해결가능하다.
+    const myObj = {
+      name : 'apple',
+      runTimeout(){
+        // setTimeout(function(){
+        //   this.callData();
+        // }.bind(this), 200);
+        setTimeout(() => {
+          this.callData();
+        }, 200);
+        
+      },
+
+      callData(){
+        console.log('Hi I am data!');
+
+        // 콜백함수가 실행되었을 때 this
+
+        // this === window
+        // (function(){
+        //   console.log(this)
+        //   console.log('data is printed!');
+        // }());
+
+        // this === myObj
+        // (function(){
+        //   console.log(this)
+        //   console.log('data is printed!');
+        // }.bind(this)());
+
+        // this === myObj
+        (() => {
+          console.log(this)
+          console.log('data is printed!');
+        })();
+      },
+    };
+    myObj.runTimeout();
+  </script>
+</body>
+</html>
