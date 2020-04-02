@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Object assign
+
+    // Object.create : 인자로 들어오는 객체에게 상속받는 새로운 객체 생성
+    const healthObj = {
+      name : '이름이야',
+      showHealth(){
+        console.log(`오늘 운동시간 : ${this.healthTime}`);
+      }
+    };
+    // const myHealth = Object.create(healthObj);
+    // myHealth.healthTime = "11:20"; // 일일이 지정해줘야한다는 불편함
+    // myHealth.resetTime = function(){
+    //   console.log('Fucking Reset');
+    // };
+    // console.log(myHealth);
+
+    // 개선 : Object.assign + Object.create();
+    // create의 인자로 받는 객체에게 상속받는 새로운객체를 생성하며, 동시에 새로운 값들을 추가함. 이 경우, 상속받으며 새로운 객체를 생성하기떄문에, 값이 최신화되지 않고, 상위에 생김. 조회했을 때 잘 뜨긴하는데 좀 기분나쁨
+    // 하지만 상속을 통한 깊은복사.
+    // const myHealth = Object.assign(Object.create(healthObj), {
+    //   healthTime : "11:20",
+    //   name : "Sangmin",
+    //   restTime(){
+    //     console.log('Fucking Reset');
+    //   }
+    // })
+    // console.log(myHealth)
+    // console.log(myHealth.name)
+
+    // Object.assign 불변 객체 복사.
+    // const myHealth = Object.assign({}, healthObj);
+    // myHealth.name="상민";
+    // console.log(healthObj);
+    // console.log(myHealth);
+
+    // Object.assign 불변 객체 복사 및, 새로운 값으로 변경
+    const myHealth = Object.assign({}, healthObj, {
+      healthTime : "11:20",
+      name : "Sangmin",
+      restTime(){
+        console.log('Fucking Reset');
+      }
+    });
+    console.log(healthObj);
+    console.log(myHealth);
+
+    // spread operator를 통한 깊은복사. 이상적.
+    // const myHealth = {...healthObj, name : "Sangmin", age : 26};
+    // console.log(healthObj)
+    // console.log(myHealth)
+    // console.log(healthObj === myHealth)
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // default parameters
+    // 기본 변수 설정
+
+    function sum(value, size=1){ // 1번방법
+      // size = size || 1; // 2번방법
+      return value*size;
+    };
+    console.log(sum(3));
+
+    // 객체도 가능하긴 하나, size에 선언되는 key는 입력되는 인수에 꼭 포함되어있어야 함.
+    // function sum(value, size={num : 1}){
+    //   return value*size.num;
+    // }
+    // console.log(sum(7, {id:6, num:8}));
+  </script>
+</body>
+</html>

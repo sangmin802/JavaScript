@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // rest parameters
+    // 가변인자는 arguments는 유사배열로 배열이아니므로, Array메소드를 사용하 수 없다.
+    // 기존 Array.from으로 바꿔줘도 되지만, 변수로 받을때 spread opreator로 하면 더 편하게 할 수 있다.
+
+    function checkNum(...argArr){
+      // const argArr = Array.from(arguments);
+      console.log(argArr)
+      const result = argArr.every(res => typeof v === 'number');
+      console.log(result);
+    }
+
+    const result = checkNum(17,1,"24");
+    // const result = checkNum(10,2,3,4,5,"55");
+  </script>
+</body>
+</html>
