@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Proxy : 특정 Object를 갖고와서 다른 용도로 사용할 수 있게하는 것
+    // 첫번째 인자로, 타겟일 될 객체를 넣고, 두번째 인자로 중간단계의 메소드를 갖고있는 객체를 지정한다.
+    // 대표 메소드는 get, set이다.
+    const proxy = new Proxy({
+      name : '이름이야',
+      changedCount : 0
+    }, {
+      get : function(target, property, receiver){
+        // target = 타겟이 된 객체
+        // property = 명령을 받은 속성
+        // receiver = 생성된 proxy객체
+        console.log('Get value');
+        console.log(target, property, receiver)
+        return target[property] ? target[property] : "Doesn't exist";
+      },
+      set : function(target, property, value){
+        // value = 변경되기로 요청한 값
+        console.log('Changing name');
+        target['changedCount']++;
+        target[property] = value
+      }
+    });
+    // 생성된 proxy객체를 조회하게될 경우, get메소드가 먼저 실행된다.
+    console.log(proxy.name);
+
+    // proxy의 name속성을 변경하게되면, 바뀌기전 set 메소드가 먼저 실행된다.
+    proxy.name = 'Name changed';
+
+    console.log(proxy.name);
+    console.log(proxy.whi);
+    console.log(proxy);
+
+    // 위에서는 예시로, 변경이 이뤄질때마다 count++되도록해서 몇번바꿨는지 출력할 수 있도록 함
+  </script>
+</body>
+</html>
