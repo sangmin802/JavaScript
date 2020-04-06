@@ -45,4 +45,7 @@
 
 // 5. 최신의 ES 자바스크립트도 지원가능하도록 컴파일해주는 babel preset 설정을 해준다.
 // npm install --save-dev @babel/core @babel/cli @babel/preset-env
+// npm install --save-dev babel-loader
 // npm install --save @babel/polyfill
+// https://github.com/babel/babel-loader 관련 깃허브
+// preset의 옵션을 통해, 컴파일할 버전 및, 적용된 버전값들을 디버깅할 수 있다.
