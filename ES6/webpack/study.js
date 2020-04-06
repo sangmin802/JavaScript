@@ -42,3 +42,7 @@
 // 1) webpack이 실행이 되면, entry를 통해 기준이되는 파일을 분석함.
 // 2) output의 경로를 통해 build된 파일을 저장함.
 // 3) 일반 html파일은 script경로를 build된 파일로 하면 됨.(모든 브라우저에서 사용가능한 버전으로 컴파일된 스크립트)
+
+// 5. 최신의 ES 자바스크립트도 지원가능하도록 컴파일해주는 babel preset 설정을 해준다.
+// npm install --save-dev @babel/core @babel/cli @babel/preset-env
+// npm install --save @babel/polyfill
