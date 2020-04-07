@@ -1,3 +1,7 @@
+// 0. npm install --save-dev webpack-dev-server를 통해 n수정할때마다 npm start를 할 필요 없이, 자동으로 적용되도록 한다.
+//    1) package.json에 추가 -> "devserver": "webpack-dev-server --open"
+//    2) webpack.config.js ouput에 publicPath : 'dist'
+
 // 1. 프로젝트를 실행할 폴더에 npm init을 통해 node js를 실행하기위한 기초작업을 설치한다.(package.json)
 //    터미널에서 계속 enter누르면 됨.
 
@@ -24,6 +28,7 @@
 //    --save : package.json에 추가해줘
 //    --save-dev : package.json의 devDependencies에 추가해줘.
 //            큰 차이는 없지만, -dev가 없으면 추후에 항상 설치되고,   -dev가 있으면 특정 명령을 통해 제외하고 설치할 수 있다.
+//    webpack의 기본설정은 js나 json파일만 읽고 변환할 수 있다. 따라서 rules에 css나 img(file)에 적합한 loader를 사용하도록 설정해주어야 한다. *webpack 로더의 종류 검색https://bogyum-uncle.tistory.com/111
 
 // 3. 간단한 명령어로 webpack을 실행할 수 있도록, scripts에 
 //    "start" : "webpack"을 써준다.
@@ -49,3 +54,5 @@
 // npm install --save @babel/polyfill
 // https://github.com/babel/babel-loader 관련 깃허브
 // preset의 옵션을 통해, 컴파일할 버전 및, 적용된 버전값들을 디버깅할 수 있다.
+
+// 6. webpack entry인 index.js에 모든 js파일들(class화 되어있는)을 import해주어 실행시키도록 한다.

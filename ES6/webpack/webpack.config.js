@@ -1,16 +1,24 @@
 let path = require('path');
 
 module.exports = {
-  entry : './src/index.js', // build를 할때(분석할 때) 기준이 되는 경로
-  output : {
+  entry : {
+    app : ['@babel/polyfill', './src/js/index.js'] // es5에 존재하지 않는 es6의 메서드나 생성자들도 지원토록함
+  }, // build를 할때(분석할 때) 기준이 되는 경로
+  // entry : { // 만약, SPA가 아니라서 페이지마다 각기다른 script파일이 연결되어야 할 때. 각각 key값을 주고, output의 filename에서 변수로 [name]을 준다.
+  //   main : './src/index.js',
+  //   menu : './src/menu.js'
+  // },
+  output : { // build(분석)을 한 내용이 저장될 곳
     filename : 'bundle.js',
-    path : path.resolve(__dirname, 'dist')
-  },  // build(분석)을 한 내용이 저장될 곳
+    // filename : '[name].bundle.js',
+    path : path.resolve(__dirname, 'dist'),
+    publicPath : 'dist' // devserver로 확인하기 위함
+  },
   module : {
     rules : [
       { // 최신의 ES스크립트를 지원가능한 버전으로 컴파일하는 babel
         test : /\.js$/,
-        include : path.resolve(__dirname, 'src'),
+        include : path.resolve(__dirname, 'src/js'),
         use : {
           loader : 'babel-loader',
           options : {
@@ -26,5 +34,5 @@ module.exports = {
         }
       },
     ]
-  }
+  },
 }
