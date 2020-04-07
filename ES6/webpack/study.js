@@ -56,3 +56,6 @@
 // preset의 옵션을 통해, 컴파일할 버전 및, 적용된 버전값들을 디버깅할 수 있다.
 
 // 6. webpack entry인 index.js에 모든 js파일들(class화 되어있는)을 import해주어 실행시키도록 한다.
+
+// 7. plugin을통해, css나 static(img같은거)등의 파일드른 다른 dir로 빼서 컴파일 할 수 있다.
+//    React webpack을 처음부터 만들어보기 -> https://velog.io/@jeff0720/React-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD%EC%9D%84-%EA%B5%AC%EC%B6%95%ED%95%98%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-Webpack-%EA%B8%B0%EC%B4%88
