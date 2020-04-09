@@ -59,3 +59,8 @@
 
 // 7. plugin을통해, css나 static(img같은거)등의 파일드른 다른 dir로 빼서 컴파일 할 수 있다.
 //    React webpack을 처음부터 만들어보기 -> https://velog.io/@jeff0720/React-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD%EC%9D%84-%EA%B5%AC%EC%B6%95%ED%95%98%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-Webpack-%EA%B8%B0%EC%B4%88
+
+
+// 8. js파일이나 css파일등 다른 dir에 하고싶으면, filename앞에 dir설정해주면 된다.
+
+// 9. css파일의 경우, mini뭐시기 플러그인 사용하는데, 메인이되는 js파일에 import를 꼭 해줘야 한다.

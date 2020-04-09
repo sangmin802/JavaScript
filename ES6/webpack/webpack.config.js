@@ -1,4 +1,6 @@
-let path = require('path');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry : {
@@ -9,10 +11,10 @@ module.exports = {
   //   menu : './src/menu.js'
   // },
   output : { // build(분석)을 한 내용이 저장될 곳
-    filename : 'bundle.js',
+    filename : './js/bundle.js',
     // filename : '[name].bundle.js',
     path : path.resolve(__dirname, 'dist'),
-    publicPath : 'dist' // devserver로 확인하기 위함
+    // publicPath : 'dist' // devserver로 확인하기 위함
   },
   module : {
     rules : [
@@ -33,6 +35,28 @@ module.exports = {
           }
         }
       },
+      {
+        test : /\.css$/,
+        sideEffects : true,
+        use: [
+          {
+            loader : MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ]
+      }
     ]
   },
+  plugins : [
+    new HtmlWebpackPlugin({
+      minify : {
+        collapseWhitespace : true
+      },
+      hash : true,
+      template : './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "./css/index.css",
+    })
+  ]
 }
