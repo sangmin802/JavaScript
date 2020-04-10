@@ -1,14 +1,20 @@
 const express  = require('express');
-
+const path = require('path');
 const app = express();
 
-let port = 3000;
+const port = 3000;
 
-app.use('/', express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../dist'));
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/../dist')
+app.engine('html', require('ejs').renderFile);
 
-app.get('/hello', (req, res) => {
-  return res.send('Can you hear me?');
-});
+app.get('/', (req, res) => {
+  res.render('index.html');
+})
+app.get('/menu', (req, res) => {
+  res.render('menu.html');
+})
 
 app.listen(port, () => {
   console.log('Express listening on port', port);

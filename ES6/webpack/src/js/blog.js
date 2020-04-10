@@ -58,18 +58,22 @@ export default class Blog {
       res.addEventListener('click', (e) => {
         const btnTarget = e.target;
         const name = res.dataset.name;
-        if(!btnTarget.className.includes('unlike')){
-          btnTarget.classList.add('unlike');
-          btnTarget.innerHTML = '싫어요';
-
-          this.likeSet.add(this.charData.find(res => res.characterName === name));
+        if(btnTarget.className.includes('like')){
+          if(!btnTarget.className.includes('unlike')){
+            btnTarget.classList.add('unlike');
+            btnTarget.innerHTML = '싫어요';
+  
+            this.likeSet.add(this.charData.find(res => res.characterName === name));
+          }else{
+            btnTarget.classList.remove('unlike');
+            btnTarget.innerHTML = '좋아요';
+  
+            this.likeSet.delete(this.charData.find(res => res.characterName === name));
+          }
+          this.createLike();
         }else{
-          btnTarget.classList.remove('unlike');
-          btnTarget.innerHTML = '좋아요';
-
-          this.likeSet.delete(this.charData.find(res => res.characterName === name));
+          location.pathname = './menu';
         }
-        this.createLike();
       })
     })
   };
