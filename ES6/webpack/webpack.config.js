@@ -63,7 +63,7 @@ module.exports = {
       hash : true,
       template : './menu.html',
       filename : 'menu.html',
-      excludeChunks  : ['index'] // MPA에서, 특정 html은 enty되는 js파일을 제외함.
+      excludeChunks  : ['index'] // MPA에서, 특정 html은 해당 js파일을 제외함.
     }),
     new MiniCssExtractPlugin({
       filename: "./css/index.css",
