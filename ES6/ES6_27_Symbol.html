@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // https://ko.javascript.info/symbol
+    // 7번째 원시 데이터 타입으로 추가된 Symbol
+    // 객체의 고유 속성(key, value)을 만들수 있는 원시데이터 형식이다.
+    // 객체에서 Symbol로 생성된 속성은, for of나 Object.keys등의 순회 method에서 노출되지 않는다.
+    // Symbol은 string.replace, string.search등의 메소드를 사용할 수 있다.
+    
+    console.dir(Symbol) // Symbol은 함수이다. 여러개의 메소드를 갖고있는 객체이기도 함.
+
+    // Symbol을 생성하는 3가지 방법
+    // 1. Symbol('원하는 key');
+    //    고유한 Symbol(지역Symbol) 반환
+    // 2. Symbol.for();
+    // 3. Symbol.iterator
+
+    // 1. Symbol('원하는 key')
+    const mainDivide = Symbol('대분류');
+    const subDivide = Symbol('소분류');
+    const item = {};
+    item[mainDivide] = '신선' // Symbol 선언법
+    item[subDivide] = '고기'
+
+    console.log(mainDivide); // Symbol(대분류)
+    console.log(mainDivide === 'Symbol(대분류)'); // 결과값이 문자열처럼보이지만, 문자열도 아니고, == 도 성립안됨. 야예 다른 값
+    console.log(Symbol('대분류') === Symbol('대분류')) // false
+    console.log(item[mainDivide]); // 신선
+    console.log(item[mainDivide] === '신선') // true
+    console.log(typeof mainDivide); // symbol
+    // 문자열타입이 아니기 떄문에, 문자열과 합치는것이 불가능하다.
+    console.log(item)
+
+    // Symbol.for
+    // Symbol.for();는 다른곳에서도 접근 가능한 Symbol을 생성하는것.
+    // Symbol의 중요 특징인 고유성을 없애기 때문에, 되도록사용하지 말자.
+
+    // 시스템 심볼
+    // 자바스크립트 내부에서 사용되는 Symbol들로, 해당 Symbol들을 활용하여 객체를 조정하는 기본동작을 입맛대로 변경할 수 있다.
+    // 그중에서도 잘 알려진 Symbol들
+    // 1. Symbol.hasInstance
+    // 2. Symbol.isConcatSpreadable
+    // 3. Symbol.iterator
+    // 4. Symbol.toPrimitive
+  </script>
+</body>
+</html>

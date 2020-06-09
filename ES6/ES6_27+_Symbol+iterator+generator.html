@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+        // iterable & Symbol.iterator
+    // https://medium.com/@hyunwoojo/javascript-iterator-iterable-%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-2c6a7bb42d87
+    // 비교
+    // https://ko.javascript.info/iterable
+    const obj = {
+      1 : 'one',
+      2 : 'two',
+      3 : 'three'
+    }
+    // for(let a of obj){
+    //   console.log(a) // obj is not iterable
+    // }
+    // console.log(...obj) // error
+    // 현재 obj는 반복순회할 수 없기 때문에 위의 에러가 발생한다.
+    // 해결하기 위해, 반복할 수 있는 Array의 형식으로 바꾸기위해 Object.keys 혹은 Object.values로 변환해줘야 한다.
+    // 위처럼 Object method를 활용하여 새롭게 배열을 만드는것이 아닌, Symbol.iterator로 할 수 있다.
+    
+    const ChangeToIterable = (unIterableObj) => {
+      const iter = valuesIter(unIterableObj);
+      // console.log(iter); // 1,2,3이 아닌 valuesIter 객체가 반환됨. generator학습후 확인해야할듯
+      return { // iterator객체
+        [Symbol.iterator] : function(){
+          return this; // iterator객체를 반환함
+        },
+        next : function(){
+          // console.log(iter.next()); // two는 객체반환 왜 안될까?
+          return iter.next();
+        }
+      }
+    };
+
+    const valuesIter = function*(unIterableObj){
+      for(let key in unIterableObj){
+        // console.log(key) // 1,2,3
+        yield unIterableObj[key];
+      }
+    };
+
+    // 정상작동됨.
+    for(let a of ChangeToIterable(obj)){
+      console.log(a)
+    };
+    // console.log(...ChangeToIterable(obj));
+  </script>
+</body>
+</html>

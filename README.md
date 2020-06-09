@@ -9,3 +9,9 @@ li처럼 하나의 부모태그 안 여러 태그들에게 각기 다른 이벤�
     
 ## 2020-05-27  
 프론트엔드 알아두면 좋은정보 링크 https://github.com/baeharam/Must-Know-About-Frontend
+  
+    
+## 2020-06-09  
+간혹, !나 !!로 짜여진 코드를 볼 수 있는다.  
+1. ! : 반대의 값.  
+2. !! : undefined나 null, 0, 1 등의 값들을 강제로 true 또는 false로 정의해준다.  
