@@ -55,6 +55,8 @@
 
     function ChangeToIterable(obj){
       const generatedObj = generate(obj);
+      // generator는 변수에 할당을 하고, 실행을 해야함.
+      // generate(obj)를 반복적으로 쓰면, 그냥 그때마다 새롭게 generator가 만들어지는 것.
       return {
         [Symbol.iterator](){
           return this;
@@ -72,6 +74,63 @@
     };
 
     console.log([...ChangeToIterable(obj)])
+
+    // generator composition
+    // generator 안에 generator함수를 넣는것.
+    
+    let str = '';
+    function* childGenerate(start, end){
+      for(let i = start; i <= end; i++) yield i;
+    }
+    function* parentGenerate(){
+      // 그냥 yield를 했을 경우, parantGenerate로 반환되는 generate에 포함되어있지않아서, for of 로 인해 작동되는 next()메소드가 값을 찾을 수 없음.
+      // yield*을 활용하면, parantGenerate의 generate에 끼워넣을수있음
+      yield* childGenerate(48, 57);
+      yield* childGenerate(65, 90);
+      yield* childGenerate(97, 122);
+    }
+    for(let code of parentGenerate()){
+      str += String.fromCharCode(code); // 키보드 눌렀을 때 숫자들을 키보드값으로 변환
+    }
+    console.log(str)
+
+    // generator는 단순 iterable함을 통하 값을 출력히는것 뿐만 아니라, yield를 통해 값을 넣을수도 있다.
+    function* math(){
+      try{
+        const result = yield "2 + 2 = ?";
+        if(result === 4){
+          console.log('O');
+        }else{
+          console.log('X');
+        }
+      }catch(e){
+        console.log(e);
+      }
+    }
+    let question = math();
+    question.next().value;
+    // question.throw(new Error('네트워크 에러'));
+    question.next(4);
+
+    function* pseudoRandom(num){
+      let previous = num;
+      while(true){ // 특정 break가 없다면 무한반복 === for(;;)
+        yield previous = previous * 16807 % 2147483647;
+        // yield previous = previous * 16807 % 2147483647;
+        // yield previous = previous * 16807 % 2147483647;
+        // yield previous = previous * 16807 % 2147483647;
+        // yield previous = previous * 16807 % 2147483647;
+        // yield previous = previous * 16807 % 2147483647;
+        // ... 무한히 반복되어있음
+        if(previous === 1622650073) break;
+      }
+    }
+
+    const ranNumber = pseudoRandom(1);
+    console.log(ranNumber.next());
+    console.log(ranNumber.next());
+    console.log(ranNumber.next());
+    console.log(ranNumber.next());
   </script>
 </body>
 </html>
