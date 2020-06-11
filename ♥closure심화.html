@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 렉시컬 스코핑 : 스코프는 함수를 호출할 때가 아니라, 함수를 어디에 선언하였는지에 따라 결정되는것.
+    function outerFunc(){
+      const x = 10;
+      const innerFunc = function(){console.log(x)}
+      innerFunc();
+    }
+    // innerFunc는 함수의 위치가 outerFunc의 내부이기 때문에, outerFunc와 innerFunc자신을 참조할 수 있다.
+    outerFunc();
+  </script>
+</body>
+</html>
