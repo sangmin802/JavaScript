@@ -82,7 +82,27 @@
       }
       // 1) VO는 Activation(AO/활성객체)를 가리키며, 해당 함수의 매개변수와 인수들의 정보를 배열의 형태로 담고있는 객체인 argumetns object가 추가된다.
 
+
       // 2-2 Scope Chain(SC/스코프체인)
+      // 전역 또는 함수가 참조할 수 있는 변수, 함수선언 등의 정보를 담고있는 전역객체(GO) 또는 활성객체(AO)의 리스트를 가리킨다.
+      //    Ex) FEC의 SC는 자신의 VO인 AO와 GEC의 VO인 GO 두개를 리스트화 하여 갖고있다.
+      //        -> 함수의 경우, 전역의 변수도 사용할 수 있는 특징이기 때문!
+      //        GEC의 SC는 자신의 VO인 GO만 리스트에 갖고있다.
+
+      // 자바스크립트는 스코프 체인을 통해 렉시컬 스코프(해당 변수/함수의 위치)를 파악한다.
+      // 함수가 중첩되어있을 경우, 가장 내부의 함수는 부모함수와 전역의 변수를 참조할 수 있다. 함수실행중, 변수를 만나면 현재Scope에서 탐색하고, 없으면 상위로 올라가면서 찾는다.
+      function outerScope(){
+        let variable = '외부변수';
+        function innerScope(){
+          variable = '내부변수' // 지우면 외부변수가 출력됨
+          console.log(variable);
+        }
+        innerScope();
+      }
+      outerScope();
+
+
+      // 2-3. this value
   </script>
 </body>
 </html>
