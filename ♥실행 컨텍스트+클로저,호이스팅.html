@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // https://poiemaweb.com/js-execution-context
+    // 아래도 링크 가볼것.
+    // https://www.zerocho.com/category/Javascript/post/5740531574288ebc5f2ba97e
+    // 3. 실행 컨텍스트의 생성과정
+    var x = 'xxx';
+    function outer(){
+      declareFunc();
+      var y = 'yyy';
+      function inner(){
+        var z = 'zzz';
+        console.log(x+y+z);
+        console.dir(inner) // [[Scopes]] 로 GO, outer의 변수(클로저)를 참조할 수 있음.
+      };
+      inner();
+    }
+    outer();
+    //  1) 전역객체 생성
+    //      - 시작 전 전역객체가 생성되며, 이 객체에는 어떠한 곳에서도 접근할 수 있다.(GO).
+    //      - 이 초기의 전역객체에는 Math, String, Array등의 기본객체와 BOM, DOM등이 설정되어 있다.
+    //  2) 전역객체 생성 이후, 전역코드 진입 시 GEC 생성후 실행컨텍스트 스택에 쌓임.
+    //  3) 해당 GEC의 스코프체인 생성
+    //      - 시작할 때 생성된 전역객체가 GEC의 스코프체인 리스트에 추가됨.
+    //  4) 해당 GEC의 (Variable Instantiation)변수 객체화 실행
+    //      - VI는, VO에 프로퍼티와 값을 추가하는것을 의미한다.
+    //      - VI 순서(위의 코드 기준)
+    //        (1) (Function Code의 경우) 매개변수가 VO의 프로퍼티로, 인수가 값으로 설정된다.
+    //        (2) 대상 코드 내의 함수선언을 대상으로 함수명이 VO의 프로퍼티로, 생성된 함수 객체가 값으로 설정된다.
+    //            - 이때 생성된 함수객체를 console.dir(outer) 혹은 console.dir(inner) 를 조회하였을 때, [[Scopes]]프로퍼티를 갖게되는데, 자신의 실행환경(Lexical Scope)과 자신을 포함하는 외부함수의 환경, 전역객체를 가리킨다. 자신을 포함하는 외부함수의 실행컨텍스트가 소멸하여도 [[Scopes]]프로퍼티를 유지하고있는데, 이것을 **클로저라고한다.
+    //            - 이로서 알 수 있는것. [[Scopes]]프로퍼티는, 해당 범위 내에서 참조할 수 있는 스코프체인 리스트를 말하는것 같다.(클로저)
+    //              ex) outer를 조회하였을 때, [[Scopes]]의 값으로, GO와 다른 const, let등의 변수를 조회할 수 있다.
+    //        (3) 대상 코드 내의 변수 선언을 대상으로 변수명이 VO의 프로퍼티로, undefined가 값으로 설정된다.
+    //         중요한점! var로 선언되었을 경우만 undefined의 값을 갖고있으며, const나 let으로 선언되었을 경우 어떠한 값도 갖고있지않는다.
+    //         -> x 선언 이전에 console로 조회할 때, var이면 undefined, const or let이면 reference error
+    //            이렇듯, var의 경우 선언 이전에 조회할 수 있는데 이것을 **변수 호이스팅이라고 한다.
+    //        (4) 위의 과정이 끝나면, windows에 GO의 내용(전역함수 및 전역변수)가 추가되어있는걸 볼 수 있다.
+    //  5) this value 결정
+    //      - 기본적으로 this는 전역객체를 가리키고 있지만, 함수 호출 패턴에 의해 this에 할당되는 값이 결정된다. 당연히, 전역코드의 경우 this 는 전역객체인 GO(window + 생성한 전역변수, 함수)이다.
+
+    function declareFunc(){
+      console.log('함수 선언식')
+    }
+    var ExpFunc = function(){
+      console.log('함수 표현식')
+    }
+    // 위의 두개의 함수 모두 [[Scopes]]의 GO에 담기지만, 함수 선언식의 경우 GO의 다른 메소드들과 동일하게 프로퍼티르 함수명, 값으로 즉시함수객체를 할당하지만, 함수표현식은 일반 변수처럼 할당된다. 따라서 함수선언식의 경우 선언문 이전에 함수를 호출할 수 있는데, 이것을 **함수 호이스팅이라고 한다.
+
+
+    // ---------------------------------------------------
+    // 지금까지 코드 실행 환경을 갖추기위한 사전준비.
+    // 전역변수x에 문자열'xxx'할당 및, 함수 outer의 호출
+    //  5) GO의 x속성의 값에 'xxx'를 할당한다.
+    //  6) 함수 outer의 실행
+    //      - 함수 실행으로 인해, 새로운 FEC가 생성된다.
+    //      - 전역코드와 마찬가지로 스코프체인생성, VI실행, this결정이 순차적으로 실행된다. 하지만, 함수코드이기 때문에, 다른 룰로 진행이 된다.
+    //      (1) 스코프체인의 첫빠따로 AO가 오게된다.
+    //          GO와 다르게, AO는 스펙상의 개념으로 조회가 불가능하다.
+    //      (2) AO는 우선 arguments의 프로퍼티 초기화를 실행하고, VI가 실행된다.
+    //      (3) 이후, 전역 스코프체인이 참조하고있는 객체가 FEC의 스코프체인에 추가된다.
+    console.dir(outer) // [[Scopes]] 로 GO를 참조할 수 있음.
+  </script>  
+</body>
+</html>

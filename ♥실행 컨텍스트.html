@@ -10,7 +10,6 @@
     // https://poiemaweb.com/js-execution-context
     // 아래도 링크 가볼것.
     // https://www.zerocho.com/category/Javascript/post/5740531574288ebc5f2ba97e
-
     // 1.Execution Context : 실행컨텍스트
       // 실행 가능한 코드가 실행되기 위해 필요한 과정
       // scope, hoisting, this, function, closure등의 동작원리를 담고있는 자바스크립트의 핵심원리이다.
@@ -39,15 +38,15 @@
 
 
     // 2. 실행 컨텍스트의 3가지 객체
-    const Execution_Context = {
-      Variable_Object : {
-        // vars, function_declarations, arguments, etc
-      },
-      Scope_Chain : [
-        // Variable_Object, all_parant_scopes
-      ],
-      thisValue : 'Context_Object'
-    }
+      const Execution_Context = {
+        Variable_Object : {
+          // vars, function_declarations, arguments, etc
+        },
+        Scope_Chain : [
+          // Variable_Object, all_parant_scopes
+        ],
+        thisValue : 'Context_Object'
+      }
       // 2-1. Variable Object(VO/변수객체)
       // 실행 컨텍스트가 생성되면, 자바스크립트 엔진은 실행에 필요한 여러 정보들을 담은 객체를 생성한다. 이를 Variable Object(VO/변수객체)라고 한다. VO는 코드가 실행될 때 엔진에 의해 참조되며, 코드에서 접근할 수 없다.
       // VO의 구성
@@ -72,8 +71,6 @@
       const Function_Execition_Context = {
         Variable_Object : { // Actibation Object(AO) 라고 함.
           arrgumetns : {
-            '매개변수' : [],
-            '인수' : [],
           },
           innerFunction : function(){'내부함수'},
           innerVar : '지역변수 innerVar'
@@ -103,6 +100,7 @@
 
 
       // 2-3. this value
+      // this 프로퍼티에는 this의 값이 할당된다.
   </script>
 </body>
 </html>
