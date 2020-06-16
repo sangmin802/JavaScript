@@ -79,8 +79,10 @@
         let pre = 0, cur = 1;
         return {
           next() {
+            // debugger 
             [pre, cur] = [cur, pre + cur]; // closure때문에 첫 pre, cur의 변수는 기록됨
             // return 받는 순간, pre, cur의 변수를 조회할 순 없지만, 내부적으로 가지고있기때문에, 계산된 값들이 저장된것처럼 느껴짐
+            console.dir(this.next)
             return { done: false, value: cur }
           }
         }
@@ -92,6 +94,9 @@
       console.log(n);
     }
     // https://poiemaweb.com/js-closure 클로저 추가학습 필요
+    // cur, pre값이 어떻게 유지되고 최신화되는지 해답
+    // next()가 호출될때, [[Scopes]]를 통해, 참조할수 있는 GO 등의 객체를 확인할 수 있는데, 이중에 Closure 값으로 pre, cur 또한 존재하고있음. pre, cur이 수정되면서 최신의 값을 지속적으로 받아올 수 있었던 것.
+    // debugger 확인시 쉽게 이해 가능
   </script>
 </body>
 </html>
