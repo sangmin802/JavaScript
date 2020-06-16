@@ -11,13 +11,14 @@
     // 아래도 링크 가볼것.
     // https://www.zerocho.com/category/Javascript/post/5740531574288ebc5f2ba97e
     // 3. 실행 컨텍스트의 생성과정
+    const immuVar = 'immuVar' // const, let은 GO가아니라 script라는 새로운곳에 추가됨.
     var x = 'xxx';
     function outer(){
       declareFunc();
       var y = 'yyy';
       function inner(){
         var z = 'zzz';
-        console.log(x+y+z);
+        console.log(immuVar+x+y+z);
         console.dir(inner) // [[Scopes]] 로 GO, outer의 변수(클로저)를 참조할 수 있음.
       };
       inner();
