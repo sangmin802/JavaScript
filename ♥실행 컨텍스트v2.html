@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li class="menu0">menu0</li>
+    <li class="menu1">menu1</li>
+    <li class="menu2">menu2</li>
+    <li class="menu3">menu3</li>
+    <li class="menu4">menu4</li>
+  </ul>
+  <script>
+    // 실행컨텍스트 v1에서 공부했지만, 좀 더 쉽게 설명해주는곳이 있어서 다시공부!
+
+    // 실행컨텍스트 : 문맥이라 생각하자. 코드의 실행환경.
+    var name = 'zero';
+    function wow(word){
+      console.log(word+' '+name)
+    };
+    function say(){
+      var name = 'nero';
+      console.log(name);
+      wow('hello');
+    };
+    say();
+    // 1. 전역변수객체 생성(windows에 전역변수들 추가)
+    // 2. 전역컨텍스트 생성. 함수선언식의 경우, 속성으로 함수명, 값으로 함수가 추가되고, 변수의경우 속성으로 변수명, 값은 undefined로 할당됨.
+    let GEC = {
+      VO : { // GO라고도 함
+        name : undefined,
+        wow : function wow(){'위의 함수내용'},
+        say : function say(){'위의 함수내용'}
+      },
+      scopeChain : ['전역 변수객체'],
+      this : window
+    }
+    // 3. 코드를 위에서부터 읽어내려오면서 각 변수들에게 값을 할당해줌.
+    GEC = {
+      VO : { // GO라고도 함
+        name : 'zero',
+        wow : function wow(){'위의 함수내용'},
+        say : function say(){'위의 함수내용'}
+      },
+      scopeChain : ['전역 변수객체'],
+      this : window
+    }
+    // 4. say() 호출시, say 함수컨텍스트 생성
+    // wow('hello')의 값은 왜없나 할 수 있는데, wow는 변수가아니라 호출된 함수임. 따라서, wow의 정보는 함수선언식으로 표현되었을 때, 전역변수객체에 담겨있음.
+    let FEC_say = {
+      VO : { // FO라고도 함
+        arguments : null,
+        variable : {
+          name : undefined
+        }
+      },
+      scopeChain : ['say 변수객체', '전역 변수객체'],
+      this : window
+    }
+    // 5. name 값 할당.
+    FEC_say = {
+      VO : { // FO라고도 함
+        arguments : null,
+        variable : {
+          name : 'nero'
+        }
+      },
+      scopeChain : ['say 변수객체', '전역 변수객체'],
+      this : window
+    }
+    // 6. wow('hello') 호출시, wow 실행컨텍스트 생성
+    let FEC_wow = {
+      VO : { // FO라고도 함
+        arguments : [{word : 'hello'}], // 변수로 보내진것을 인자로 받음
+        variable : null // 해당 스코프 내에서, 갖고있는 변수 없음.
+      },
+      scopeChain : ['wow 변수객체', '전역 변수객체']
+    }
+    // say변수객체는 closure로 존재하지않는다. 왜냐? 처음 함수가 선언될 때, 전역에 선언되었기 때문. 
+    
+    // 결과 = hello zero;
+    // hello는 arguments에서 찾고, name의 값은, variable에 없기때문에, scopeChain을 따라올라가 전역변수객체에서 찾는다.
+
+    // 클로저
+    var counter = (function(){
+      var count = 0;
+      function changeCount(n){
+        count += n;
+      }
+      return {
+        increase : function(){
+          changeCount(1);
+        },
+        decrease : function(){
+          changeCount(-1);
+        },
+        show : function(){
+          console.log(count);
+        }
+      }
+    })();
+    // 즉시실행함수로 생성되는 FEC
+    FEC_counter = {
+      VO : {
+        arguments : null,
+        variable : {
+          count : 0,
+          changeCount : function changeCount(n){
+            count += n;
+          }
+        }
+      },
+      scopeChain : ['FEC_counter 변수객체', '전역변수객체'],
+      this : window
+    }
+
+    counter.increase();
+    counter.show();
+    counter.decrease();
+    counter.show();
+  </script>
+</body>
+</html>
