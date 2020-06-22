@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ES11의 특징들
+    // ES11
+    // ?. 객체 프로퍼티의 존재여부를 파악할 때, &&연산자를 사용했는데, 가독성있게 줄일수 있게되었다.
+    const book = {
+      entities : {
+        hashtags : ['test']
+      }
+    };
+    console.log(book.entities && book.entities.hashtags)
+    console.log(book.entities?.hashtags)
+    // entities속성이 있다면, entities의 hashtags를 보여줘
+
+    // ?? ||대신 ??
+    const nullValue = null;
+    const value = nullValue ?? 'value is null';
+    console.log(value)
+  </script>
+</body>
+</html>

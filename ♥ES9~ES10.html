@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ES9 ~ ES10의 특징들
+
+    // ES9
+    // async반복자
+    // 기존 iterator의 next()메소드는 value와 done을 가진 객체를 반환했지만, promise로 감싸진 promise객체를 리턴할 수 있다.
+    const asyncIterator = function(){
+      let num = 3;
+      return {
+        next(){
+          if(num){
+            return Promise.resolve({
+              value : num--,
+              done : false
+            });
+          }else{
+            return Promise.resolve({
+              done : true
+            });
+          };
+        }
+      };
+    };
+    const iterator = asyncIterator();
+    (async function(){
+      await iterator.next().then(console.log);
+      await iterator.next().then(console.log);
+      await iterator.next().then(console.log);
+      await iterator.next().then(console.log);
+    })();
+
+    // Promise.finally Promise객체를 then이나 catch로 처리한 이후, finally를 쓸 수 있게 됨
+    const promiseFinally = function(){
+      return new Promise((res, rej) => {
+        setTimeout(() => {
+          // res('Promise 성공');
+          rej('Promise 실패');
+        }, 1000);
+      });
+    };
+    promiseFinally()
+    .then(console.log)
+    .catch(console.log)
+    .finally(() => console.log('어쨌든 Promise 종료'))
+
+
+    // ES10
+    // Array.flat(), Array.flayMap() 배열안 배열 혹은, 배열안의 빈 원소가 있을 때, 하나의 꽉 찬 배열로 합쳐주는 메소드가 flat이며, map을 한 다음 flat 하는것이 flayMap이다.
+    const arr = [[1,2,3],4,,5];
+    console.log(arr.flat()); // [1,2,3,4,5]
+    console.log(arr.flatMap(a => {
+      if(a instanceof Array){ // a의 타입이 배열이라면
+        return a.length;
+      }else if(Number.isInteger(a)){ // a가 정수라면
+        return a*2;
+      }else{
+        return null;
+      }
+    })) // [3,8,10]
+
+    // Object.fromEntries() Object.entries와 반대로 key/value쌍의 배열을 객체로 만드는 메소드
+    const entriesArr = [['name', '약관임'], ['charClass', 'BowMaster'], ['level', 218]];
+    console.log(Object.fromEntries(entriesArr)); // 객체형식
+
+    // String.trimStart() || String.trimEnd() 문자열의 앞/뒤를 지우는 메소드
+    const trimString = "   String   ";
+    console.log(trimString.trimStart());
+    console.log(trimString.trimEnd());
+  </script>
+</body>
+</html>

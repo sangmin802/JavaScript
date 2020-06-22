@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ES7 ~ ES8의 특징들
+
+    // ES7
+    // arr.includes(찾는원소, 인덱스 시작점)
+    [1,2,3].includes(2); // true
+    [1,2,3].includes(2,2); // false
+
+    // ** 제곱
+    console.log(2**3); // 8
+    console.log(Math.pow(2, 3)); // 8
+
+
+
+    // ES8
+    // async - await 비동기를 동기처럼
+    const promise1 = function(){
+      return new Promise((res, rej) => {
+        setTimeout(() => {
+          res('Promise1 끝');
+        }, 1000);
+      });
+    };
+    const promise2 = function(){
+      return new Promise((res, rej) => {
+        setTimeout(() => {
+          res('Promise2 끝');
+        }, 1000);
+      });
+    };
+    const awaitAllPromise = async function(){
+      const promise1Message = await promise1();
+      const promise2Message = await promise2();
+      console.log(promise1Message, promise2Message)
+    };
+    awaitAllPromise();
+
+    // Object.entries() key/value 쌍을 배열로 가져오는 메소드
+    class MapleObj {
+      constructor(name, charClass, level){
+        this.name = name;
+        this.charClass = charClass;
+        this.level = level;
+      }
+    }
+    const myChar = new MapleObj('약관임', 'BowMaster', 218)
+    console.log(Object.entries(myChar));
+
+    // Object.values 객체의 values값들만 배열로 가져오는 메소드
+    console.log(Object.values(myChar))
+  </script>
+</body>
+</html>
