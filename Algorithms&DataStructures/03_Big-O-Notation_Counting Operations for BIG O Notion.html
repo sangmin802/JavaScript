@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Counting Operations for Big O Notation
+
+    // 1.
+    //  곱하기, 더하기, 나누기 총 3개의 연산이 있음.
+    const sumUpTo = n => {
+      return (n*(n+1)) / 2;
+    }
+
+    // 2.
+    //  변수할당은 연산으로 계산되지 않으므로 제외
+    //  for문은 n의 수만큼 더하기가 반복되기때문에, 연산은 총 1*n개
+    const sumUpTo2 = n => {
+      let total = 0;
+      for(let i = 1; i <= n; i++){
+        total += 1;
+      }
+      return total;
+    }
+
+    // 1번이 더 효율적인 방식이다.
+    //    n의 값이 100만일 경우
+    //      1은 똑같이 3개의 연산
+    //      2는 1*100만치의 연산
+
+    let t1, t2;
+    t1 = Date.now();
+    sumUpTo(2500000000);
+    t2 = Date.now();
+    console.log(`${(t2 - t1) / 1000} seconds`); // 0초
+
+    t1 = Date.now();
+    sumUpTo2(2500000000);
+    t2 = Date.now();
+    console.log(`${(t2 - t1) / 1000} seconds`); // 2.28초
+
+  </script>
+</body>
+</html>

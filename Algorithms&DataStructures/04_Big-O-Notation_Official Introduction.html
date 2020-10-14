@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1
+    const sumUpTo = n => {
+      return (n*(n+1)) / 2;
+    }
+
+    // 2
+    const sumUpTo2 = n => {
+      let total = 0;
+      for(let i = 1; i <= n; i++){
+        total += 1;
+      }
+      return total;
+    }
+
+    // 어떤 n이 입력되더라도
+    //  1은 서로다른 3개의 연산이므로 O3 (O, O, O)
+    //  2는 n의 값에따라 반복되므로 O(n) (O*n)
+
+
+    // 1
+    function shoutWhatsUpDawg(n){
+      for(let i = 0; i < n; i++){
+        console.log("whats up dawg?!"); // O
+      }
+      for(let i = 0; i< n; i++){
+        console.log("whats up dawg?!");  // O
+      }
+    }
+    shoutWhatsUpDawg(4)
+    // 동일한 하나의 O가 n에 관련되어 2개가 실행됨
+    // O(2n)
+
+    // 2
+    function shoutWhatsUpDawg2(n){
+      for(let i = 0; i < 4; i++){
+        console.log("whats up dawg?!");
+      }
+    }
+    shoutWhatsUpDawg2(10)
+    // n에 관련 없이 하나의 O가 4번실행
+    // O(4)
+
+
+    // 1
+    function shoutWrodPairs(arr){
+      for(let i = 0; i < arr.length; i++){
+        for(let j = 0; j < arr.length; j++){
+          console.log(arr[i] + " " + arr[j]);
+        }
+      }
+    }
+    shoutWrodPairs(['모여요꿈동산', '워로드는뒤로점프', '군인시절'])
+    // 같은 n 배열을 순회하는 O(n)과 O(n)인데, 내부 O(n)은 외부 O(n)에 n번 모두 순회 (for문이 엮여있음)
+    // O(n^2)
+
+    // 2
+    function shoutWrodPairs2(arr, arr2){
+      for(let i = 0; i < arr.length; i++){
+        for(let j = 0; j < arr2.length; j++){
+          console.log(arr[i] + " " + arr2[j]);
+        }
+      }
+    }
+    shoutWrodPairs2(['모여요꿈동산', '워로드는뒤로점프', '군인시절'], ["퐁메라니안", "한대만칠겡"])
+    // n에 관련된 하나의 O m과 관련된 하나의 O가 for문으로 서로 엮여있음
+    // O(n*m)
+
+    // 1은 서로 같은것을 참조하는 O가 엮여 반복해서 제곱
+    // 2은 서로 다른것을 참조하는 O가 엮여 반복해서 곱하기
+
+
+// 정리
+    // 컬렉션이나 n을 기준점으로 순회한다면 O(n)
+    // 컬렉션이나 n을 기준점으로 순회하는것이 중첩되어있다면 O(n^2) 2는 바뀔수 있을듯 중첩된거 개수에 따라
+    // 서로다른 컬렉션이나 변수를 기준으로 순회하는것이 중첩되어있다면 O(n*m)
+
+
+    // O의 괄호 안은 실행 횟수? 인듯함
+    // O바로뒤의 숫자는 서로다른 연산의 개수인듯?
+  </script>
+</body>
+</html>
